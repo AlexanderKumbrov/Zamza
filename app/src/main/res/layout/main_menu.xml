@@ -60,7 +60,10 @@
         <Button android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:drawableLeft="@drawable/ic_local_phone_black_24dp"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+        android:text="@string/cold_calling"
+
+        android:onClick="cold_calling"/>
         <Button android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:drawableLeft="@drawable/ic_timer"
@@ -82,10 +85,16 @@
                      android:drawableLeft="@drawable/ic_plus"
                      android:layout_weight="1"/>
     </LinearLayout>
+    <ScrollView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttons"
+                android:layout_centerHorizontal="true"
+    >
     <CalendarView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                    android:layout_below="@+id/buttons"
-                    android:layout_centerHorizontal="true">
+
+  >
 
     </CalendarView>
+    </ScrollView>
 </RelativeLayout>
