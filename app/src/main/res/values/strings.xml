@@ -8,4 +8,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="cold_calling">Cold calling</string>
+    <string name="debt_repayment_term">Debt repayment term</string>
+    <string name="meetings">Meetings</string>
+    <string name="sales_training">Sales training</string>
 </resources>

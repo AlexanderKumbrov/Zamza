@@ -67,15 +67,24 @@
         <Button android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:drawableLeft="@drawable/ic_timer"
-                     android:layout_weight="1"/>
+                     android:layout_weight="1"
+        android:text="@string/debt_repayment_term"
+                android:onClick="debt_repayment_term"
+        />
         <Button android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:drawableLeft="@drawable/ic_bag"
-                     android:layout_weight="1"/>
+                     android:layout_weight="1"
+        android:text="@string/meetings"
+            android:onClick="meetings"/>
+
         <Button android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:drawableLeft="@drawable/ic_book"
-                     android:layout_weight="1"/>
+                     android:layout_weight="1"
+        android:text="@string/sales_training"
+        android:onClick="sales_training"/>
+
         <Button android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:drawableLeft="@drawable/ic_warning_black_24dp"
