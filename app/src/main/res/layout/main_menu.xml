@@ -3,54 +3,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-                                       android:layout_width="match_parent"
-                                       android:layout_height="wrap_content"
-                                       android:orientation="horizontal"
-                                       android:background="@color/colorPrimary"
-                                       android:id="@+id/tool_bar">
-
-
-        <TextView
-                android:text="ZAMZA"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:gravity="center_vertical"
-                android:padding="10dp"
-
-                android:layout_alignParentTop="true"
-
-        />
-        <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/ic_bug"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_vertical"
-        />
-        <ImageButton
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/ic_notifications"
-                android:layout_gravity="center_vertical"
-                android:background="@android:color/transparent"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="120dp"/>
-
-        <ImageButton android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:src="@drawable/ic_settings_black_24dp"
-                     android:layout_gravity="center_vertical"
-                     android:background="@android:color/transparent"
-                     android:layout_alignParentTop="true"
-                     android:layout_centerHorizontal="true"
-                     android:layout_marginLeft="40dp"
-        />
-
-    </android.support.v7.widget.Toolbar>
-
+    <include layout="@layout/tool_bar"/>
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
     android:layout_below="@+id/tool_bar"
@@ -62,7 +15,7 @@
                      android:drawableLeft="@drawable/ic_local_phone_black_24dp"
                         android:layout_weight="1"
         android:text="@string/cold_calling"
-
+        android:id="@+id/buttonCold"
         android:onClick="cold_calling"/>
         <Button android:layout_width="match_parent"
                      android:layout_height="match_parent"
@@ -87,23 +40,20 @@
 
         <Button android:layout_width="match_parent"
                      android:layout_height="match_parent"
-                     android:drawableLeft="@drawable/ic_warning_black_24dp"
-                     android:layout_weight="1"/>
-        <Button android:layout_width="match_parent"
-                     android:layout_height="match_parent"
                      android:drawableLeft="@drawable/ic_plus"
-                     android:layout_weight="1"/>
+                     android:layout_weight="1"
+        android:text="@string/still"/>
     </LinearLayout>
-    <ScrollView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/buttons"
-                android:layout_centerHorizontal="true"
-    >
-    <CalendarView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
+    <!--<ScrollView android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/buttons"-->
+                <!--android:layout_centerHorizontal="true"-->
+    <!--&gt;-->
+    <!--<CalendarView android:layout_width="wrap_content"-->
+                  <!--android:layout_height="wrap_content"-->
 
-  >
+  <!--&gt;-->
 
-    </CalendarView>
-    </ScrollView>
+    <!--</CalendarView>-->
+    <!--</ScrollView>-->
 </RelativeLayout>

@@ -2,12 +2,13 @@ package com.example.waves.zamza;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
 public class MainMenu extends AppCompatActivity {
-
     protected void  onCreate (Bundle savedInstanceState){
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main_menu);
@@ -28,5 +29,11 @@ public void debt_repayment_term(View view){
     public void sales_training(View view){
         Intent sales = new Intent(this ,SalesTraining.class);
         startActivity(sales);
+    }
+    public void loadFragment (Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container , fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
