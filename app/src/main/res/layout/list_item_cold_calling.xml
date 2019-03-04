@@ -2,22 +2,23 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="60dp">
 
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:id="@+id/name"
-              android:text="Виталя"
-              android:textSize="40sp"
+              android:text="Name Number"
+              android:textSize="20sp"
 
     />
+    <TextView android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="+7778532154"
+    android:layout_below="@+id/name"/>
     <Button android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:drawableTop="@drawable/ic_local_phone_black_24dp"
+            android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
 
     />
 </RelativeLayout>

@@ -19,9 +19,9 @@ public class ColdCallingLab {
     ColdCallingLab(Context context){
         mColdCalling = new ArrayList<>();
 
-        for (int i =0 ;i <10 ;i++){
+        for (int i =0 ;i <20 ;i++){
             ColdCalling coldCalling = new ColdCalling();
-            coldCalling.setNameCalling("Клиент №"+i);
+            coldCalling.setNameCalling("Клиент "+i);
             mColdCalling.add(coldCalling);
         }
     }
