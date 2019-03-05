@@ -15,8 +15,21 @@
                      android:layout_height="wrap_content"
                      android:text="+7778532154"
     android:layout_below="@+id/name"/>
+     <Button android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="#c0392b"
+             android:id="@+id/delete"
+             android:layout_toLeftOf="@+id/bookmark"
+     />
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#f1c40f"
+            android:id="@+id/bookmark"
+            android:layout_toLeftOf="@+id/call"
+    />
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/call"
                 android:background="@color/colorPrimary"
                 android:layout_alignParentRight="true"
 
