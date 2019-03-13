@@ -3,6 +3,7 @@ package com.example.waves.zamza.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.example.waves.zamza.database.DbSchema.Table;
 
 public class BaseHelper extends SQLiteOpenHelper {
 private static final int VERSION = 1;
@@ -13,7 +14,10 @@ private static final String DATABASE_NAME = "zamzaBase.db";
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL("create table " + Table.NAME+ "("+
+        "_id integer primary key autoincrement,"
+                +Table.Cols.UUID + ", "+
+        Table.Cols.TITLE + ", " + Table.Cols.NUMBER + ")");
     }
 
     @Override
