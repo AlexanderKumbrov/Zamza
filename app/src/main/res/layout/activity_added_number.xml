@@ -36,8 +36,34 @@
                     android:focusable="true"
                     android:hint="Number"
                     android:inputType="number"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:id="@+id/all_number"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Position"
+                      android:id="@+id/position"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:hint="Position"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Company"
+                      android:id="@+id/company"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:hint="Name Company"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Mail"
+                      android:id="@+id/mail"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:hint="Mail"
+            android:inputType="textEmailAddress"/>
         </LinearLayout>
 
     </ScrollView>

@@ -6,6 +6,34 @@ public class ColdCalling {
     private String nameCalling;
     private String numberCalling;
     private UUID uuidCalling;
+
+    public String getPositionCalling() {
+        return positionCalling;
+    }
+
+    public void setPositionCalling(String positionCalling) {
+        this.positionCalling = positionCalling;
+    }
+
+    public String getCompanyCalling() {
+        return companyCalling;
+    }
+
+    public void setCompanyCalling(String companyCalling) {
+        this.companyCalling = companyCalling;
+    }
+
+    public String getMailCalling() {
+        return mailCalling;
+    }
+
+    public void setMailCalling(String mailCalling) {
+        this.mailCalling = mailCalling;
+    }
+
+    private String positionCalling;
+    private String companyCalling;
+    private String mailCalling;
     public ColdCalling (){
         this (UUID.randomUUID());
     }

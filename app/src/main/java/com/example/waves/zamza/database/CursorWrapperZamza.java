@@ -19,12 +19,15 @@ public class CursorWrapperZamza extends CursorWrapper {
     }
     public ColdCalling getColdCalling (){
         String uuidString = getString(getColumnIndex(Table.Cols.UUID));
-        String title = getString(getColumnIndex(Table.Cols.TITLE));
+        String name = getString(getColumnIndex(Table.Cols.NAME));
         String number = getString(getColumnIndex(Table.Cols.NUMBER));
+        String position = getString(getColumnIndex(Table.Cols.POSITION));
+        String company = getString(getColumnIndex(Table.Cols.COMPANY));
+        String mail = getString(getColumnIndex(Table.Cols.MAIL));
 
 
         ColdCalling coldCalling = new ColdCalling(UUID.fromString(uuidString));
-        coldCalling.setNameCalling(title);
+        coldCalling.setNameCalling(name);
         coldCalling.setNumberCalling(number);
 
         return coldCalling;

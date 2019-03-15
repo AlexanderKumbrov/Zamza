@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.waves.zamza.database.BaseHelper;
 import com.example.waves.zamza.database.CursorWrapperZamza;
-import com.example.waves.zamza.database.DbSchema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,8 +64,11 @@ public class ColdCallingLab {
     private static ContentValues getContentValues (ColdCalling coldCalling){
         ContentValues values = new ContentValues();
         values.put(Table.Cols.UUID , coldCalling.getUuidCalling().toString());
-        values.put(Table.Cols.TITLE , coldCalling.getNameCalling());
+        values.put(Table.Cols.NAME, coldCalling.getNameCalling());
         values.put(Table.Cols.NUMBER , coldCalling.getNumberCalling());
+        values.put(Table.Cols.POSITION , coldCalling.getPositionCalling());
+        values.put(Table.Cols.COMPANY , coldCalling.getCompanyCalling());
+        values.put(Table.Cols.MAIL , coldCalling.getMailCalling());
         return values;
     }
     private CursorWrapperZamza queryNumber (String whereClause , String[] whereArgs){
