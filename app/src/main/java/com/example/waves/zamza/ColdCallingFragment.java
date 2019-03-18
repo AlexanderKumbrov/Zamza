@@ -12,12 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import javax.security.auth.callback.Callback;
 import java.util.List;
 
 public class ColdCallingFragment extends Fragment {
     private RecyclerView callingRecyclerView;
     private ColdAdapter coldAdapter;
     private FloatingActionButton floatingActionButton ;
+    private Callbacks callbacks;
     @Override
     public View onCreateView(LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_cold_calling , container , false);
@@ -29,16 +31,27 @@ public class ColdCallingFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddNewContactActivity.class);
                 startActivity(intent);
+                addNumber();
+
             }
         });
         updateUI();
         return view;
     }
+    public interface Callbacks{
+        void onNumberSelect (ColdCalling coldCalling);
+    }
     private void updateUI (){
         ColdCallingLab coldCallingLab = ColdCallingLab.get(getActivity());
         List<ColdCalling> coldCallings = coldCallingLab.getmColdCalling();
-        coldAdapter = new ColdAdapter(coldCallings);
-        callingRecyclerView.setAdapter(coldAdapter);
+       if (coldAdapter == null){
+            coldAdapter = new ColdAdapter(coldCallings);
+            callingRecyclerView.setAdapter(coldAdapter);
+       }
+       else {
+            coldAdapter.setNumbers(coldCallings);
+            coldAdapter.notifyDataSetChanged();
+       }
     }
     private class ColdHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -65,7 +78,9 @@ public class ColdCallingFragment extends Fragment {
         }
 
 
-
+        public void setNumbers (List <ColdCalling> coldCallings){
+        mColdCalling = coldCallings;
+        }
         @Override
         public ColdHolder onCreateViewHolder( ViewGroup parent, int position) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
@@ -75,7 +90,7 @@ public class ColdCallingFragment extends Fragment {
 
         @Override
         public void onBindViewHolder( ColdHolder holder, int position) {
-        ColdCalling coldCalling =mColdCalling.get(position);
+        ColdCalling coldCalling = mColdCalling.get(position);
         holder.bindCold(coldCalling);
         }
 
@@ -84,4 +99,10 @@ public class ColdCallingFragment extends Fragment {
             return mColdCalling.size();
         }
     }
+private void addNumber (){
+ColdCalling coldCalling = new ColdCalling();
+ColdCallingLab.get(getActivity()).addNumber(coldCalling);
+updateUI();
+
+ }
 }

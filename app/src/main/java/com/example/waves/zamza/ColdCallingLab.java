@@ -28,12 +28,6 @@ public class ColdCallingLab {
     ColdCallingLab(Context context){
         mContext = context.getApplicationContext();
         mDataBase = new BaseHelper(mContext).getWritableDatabase();
-
-        for (int i =0 ;i <20 ;i++){
-            ColdCalling coldCalling = new ColdCalling();
-            coldCalling.setNameCalling("Клиент "+i);
-
-        }
     }
     public List<ColdCalling>getmColdCalling(){
         List <ColdCalling>coldCallings = new ArrayList<>();
@@ -59,7 +53,8 @@ public class ColdCallingLab {
         String uuidString  = coldCalling.getUuidCalling().toString();
         ContentValues values = getContentValues(coldCalling);
 
-        mDataBase.update(Table.NAME , values , Table.Cols.UUID + " ?" , new String[]{uuidString});
+        mDataBase.update(Table.NAME , values , Table.Cols.UUID + " ?"
+                , new String[]{uuidString});
     }
     private static ContentValues getContentValues (ColdCalling coldCalling){
         ContentValues values = new ContentValues();
