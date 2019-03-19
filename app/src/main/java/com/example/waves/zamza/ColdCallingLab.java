@@ -29,6 +29,10 @@ public class ColdCallingLab {
         mContext = context.getApplicationContext();
         mDataBase = new BaseHelper(mContext).getWritableDatabase();
     }
+
+    public void deleteNumber (ColdCalling coldCalling){
+mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.getUuidCalling().toString()});
+    }
     public List<ColdCalling>getmColdCalling(){
         List <ColdCalling>coldCallings = new ArrayList<>();
 

@@ -13,6 +13,7 @@
     />
     <TextView android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                        android:id="@+id/number"
                      android:text="+7778532154"
     android:layout_below="@+id/name"/>
      <Button android:layout_width="wrap_content"
