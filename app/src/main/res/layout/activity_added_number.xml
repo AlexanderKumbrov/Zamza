@@ -2,40 +2,48 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools">
-    <Button android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools">
+    <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-    android:layout_alignParentRight="true"
-    android:text="OK"
-    android:id="@+id/ok_button"
-    android:onClick="test"/>
-    <ScrollView android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-    android:layout_below="@+id/ok_button">
+            android:layout_alignParentRight="true"
+            android:text="OK"
+            android:id="@+id/ok_button"
+            android:onClick="test"/>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ok_button">
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-        android:orientation="vertical">
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                        android:text="Edit Name"
-            android:id="@+id/name_contact"/>
+                android:orientation="vertical">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Name"
+                    android:id="@+id/name_contact"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-            android:focusable="true"
+                    android:id="@+id/name_contact_edit"
+                    android:focusable="true"
                     android:hint="Name"/>
 
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Number Phone"
-            android:id="@+id/number_phone"/>
+                      android:id="@+id/number_contact"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="true"
                     android:hint="Number"
+                    android:id="@+id/number_contact_edit"
                     android:inputType="number"/>
+
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Position"
@@ -45,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:focusable="true"
                     android:hint="Position"/>
+
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Company"
@@ -54,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:focusable="true"
                     android:hint="Name Company"/>
+
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Mail"
@@ -76,6 +86,7 @@
             tools:ignore="RtlHardcoded"
             android:src="@drawable/ic_phone_book"
             android:onClick="contactBook"
+            android:id="@+id/contact_book"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"/>
 </RelativeLayout>

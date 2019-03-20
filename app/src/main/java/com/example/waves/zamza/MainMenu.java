@@ -21,7 +21,7 @@ public class MainMenu extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
     public void cold_calling (View view){
-        Intent cold = new Intent(this , ColdCallingActivity.class);
+        Intent cold = new Intent(this , AddNewContactActivity.class);
         startActivity(cold);
     }
     public void debt_repayment_term(View view){

@@ -8,45 +8,54 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class AddNewContactActivity extends AppCompatActivity {
-    private TextView textView;
-    private TextView allNumber;
-    String name ;
-    String number ;
+    public static final int REQUES_CONTACT = 1;
+
+
+    private String name ;
+    private String number ;
+    private FloatingActionButton contactBook;
     private Button okButton ;
+    private ColdCalling mColdCalling;
+    private EditText nameContact;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_added_number);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        textView = (TextView)findViewById(R.id.name_contact);
-
-    }
-
-    public void contactBook (View view){
-        Intent callIntent = new Intent(Intent.ACTION_PICK , ContactsContract.Contacts.CONTENT_URI);
-        startActivityForResult(callIntent , 1 );
-
-    }
-    @Override
-    public void onActivityResult (int reqCode , int resultCode , Intent data){
-        super.onActivityResult(reqCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            Uri contactData = data.getData();
-            Cursor c =  managedQuery(contactData, null, null, null, null);
-            String id = contactData.getLastPathSegment();
-            if (c.moveToFirst()) {
-                name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+        final Intent addContactBook = new Intent(Intent.ACTION_PICK , ContactsContract.Contacts.CONTENT_URI);
+        nameContact = (EditText)findViewById(R.id.name_contact_edit);
+        contactBook = (FloatingActionButton)findViewById(R.id.contact_book);
+        contactBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+startActivityForResult(addContactBook , REQUES_CONTACT);
             }
-        }
-        textView.setText(name);
+        });
+}
 
-    }
+@Override
+public void onActivityResult (int requestCode , int result , Intent data){
+        if (result != Activity.RESULT_OK){
+            return;
+        }
+        if (requestCode == REQUES_CONTACT && data != null){
+            Uri contactUri = data.getData();
+
+            String [] queryField = new String[]{
+                    ContactsContract.Contacts.DISPLAY_NAME
+            };
+        }
+}
+
     private void getAllContacts(){
         StringBuilder stringBuilder = new StringBuilder();
         ContentResolver contentResolver = getContentResolver();
@@ -72,6 +81,5 @@ public class AddNewContactActivity extends AppCompatActivity {
             }
         }
         cursor.close();
-        allNumber.setText(stringBuilder.toString());
     }
 }
