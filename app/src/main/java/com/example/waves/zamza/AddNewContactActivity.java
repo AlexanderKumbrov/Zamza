@@ -53,6 +53,19 @@ public void onActivityResult (int requestCode , int result , Intent data){
             String [] queryField = new String[]{
                     ContactsContract.Contacts.DISPLAY_NAME
             };
+            Cursor c = getContentResolver().query(contactUri , queryField , null , null , null);
+            try {
+                if (c.getCount() == 0){
+                    return;
+                }
+                c.moveToFirst();
+                String nameContactC  = c.getString(0);
+//                mColdCalling.setNameCalling(nameContactC);
+                nameContact.setText(nameContactC);
+            }
+            finally {
+                c.close();
+            }
         }
 }
 
@@ -81,5 +94,8 @@ public void onActivityResult (int requestCode , int result , Intent data){
             }
         }
         cursor.close();
+    }
+private void updateColdCalling (){
+
     }
 }
