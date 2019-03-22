@@ -113,7 +113,7 @@ public class ColdCallingFragment extends Fragment {
         public void bindCold(ColdCalling coldCalling) {
             mColdCalling = coldCalling;
             mNameNumber.setText(mColdCalling.getNameCalling());
-            mNumber.setText(mColdCalling.getNumberCalling());
+//            mNumber.setLon(mColdCalling.getNumberCalling());
 
         }
 

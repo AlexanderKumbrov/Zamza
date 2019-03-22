@@ -10,22 +10,21 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class AddNewContactActivity extends AppCompatActivity {
-    public static final int REQUES_CONTACT = 1;
+    public static final int REQUEST_CONTACT = 1;
 
-
+    public static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 6;
     private String name ;
     private String number ;
     private FloatingActionButton contactBook;
     private Button okButton ;
     private ColdCalling mColdCalling;
     private EditText nameContact;
+    private EditText numberContact ;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +32,12 @@ public class AddNewContactActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         final Intent addContactBook = new Intent(Intent.ACTION_PICK , ContactsContract.Contacts.CONTENT_URI);
         nameContact = (EditText)findViewById(R.id.name_contact_edit);
+        numberContact = (EditText)findViewById(R.id.number_contact_edit);
         contactBook = (FloatingActionButton)findViewById(R.id.contact_book);
         contactBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-startActivityForResult(addContactBook , REQUES_CONTACT);
+startActivityForResult(addContactBook , REQUEST_CONTACT);
             }
         });
 }
@@ -47,7 +47,7 @@ public void onActivityResult (int requestCode , int result , Intent data){
         if (result != Activity.RESULT_OK){
             return;
         }
-        if (requestCode == REQUES_CONTACT && data != null){
+        if (requestCode == REQUEST_CONTACT && data != null){
             Uri contactUri = data.getData();
 
             String [] queryField = new String[]{
@@ -66,9 +66,26 @@ public void onActivityResult (int requestCode , int result , Intent data){
             finally {
                 c.close();
             }
+            callNumber();
         }
 }
 
+private void callNumber(){
+    Cursor cursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI , new String[]
+                    {ContactsContract.CommonDataKinds.Phone.NUMBER}, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=?"
+            ,new String[]{String.valueOf(mColdCalling.getNumberCalling())},null);
+    try {
+        if (cursor == null || cursor.getCount() == 0){
+            return;
+        }
+        cursor.moveToFirst();
+        String phoneNumber = cursor.getString(0);
+        numberContact.setText(phoneNumber);
+    }
+    finally {
+        cursor.close();
+    }
+}
     private void getAllContacts(){
         StringBuilder stringBuilder = new StringBuilder();
         ContentResolver contentResolver = getContentResolver();

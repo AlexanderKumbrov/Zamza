@@ -64,7 +64,7 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.
         ContentValues values = new ContentValues();
         values.put(Table.Cols.UUID , coldCalling.getUuidCalling().toString());
         values.put(Table.Cols.NAME, coldCalling.getNameCalling());
-        values.put(Table.Cols.NUMBER , coldCalling.getNumberCalling());
+        values.put(Table.Cols.NUMBER , Long.toString(coldCalling.getNumberCalling()));
         values.put(Table.Cols.POSITION , coldCalling.getPositionCalling());
         values.put(Table.Cols.COMPANY , coldCalling.getCompanyCalling());
         values.put(Table.Cols.MAIL , coldCalling.getMailCalling());

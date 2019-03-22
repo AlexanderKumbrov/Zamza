@@ -4,9 +4,20 @@ import java.util.UUID;
 
 public class ColdCalling {
     private String nameCalling;
-    private String numberCalling;
-    private UUID uuidCalling;
 
+    public long getNumberCalling() {
+        return numberCalling;
+    }
+
+    public void setNumberCalling(long numberCalling) {
+        this.numberCalling = numberCalling;
+    }
+
+    private long numberCalling;
+    private UUID uuidCalling;
+    private String positionCalling;
+    private String companyCalling;
+    private String mailCalling;
     public String getPositionCalling() {
         return positionCalling;
     }
@@ -31,9 +42,7 @@ public class ColdCalling {
         this.mailCalling = mailCalling;
     }
 
-    private String positionCalling;
-    private String companyCalling;
-    private String mailCalling;
+
     public ColdCalling (){
         this (UUID.randomUUID());
     }
@@ -41,13 +50,7 @@ public class ColdCalling {
         uuidCalling = id;
 
     }
-    public String getNumberCalling() {
-        return numberCalling;
-    }
 
-    public void setNumberCalling(String numberCalling) {
-        this.numberCalling = numberCalling;
-    }
 
 
 

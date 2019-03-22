@@ -13,6 +13,8 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".SettingsActivity">
+        </activity>
         <activity android:name=".AddNewContactActivity">
         </activity>
         <activity android:name=".SalesTraining">

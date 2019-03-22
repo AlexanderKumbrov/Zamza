@@ -20,7 +20,7 @@ public class CursorWrapperZamza extends CursorWrapper {
     public ColdCalling getColdCalling (){
         String uuidString = getString(getColumnIndex(Table.Cols.UUID));
         String name = getString(getColumnIndex(Table.Cols.NAME));
-        String number = getString(getColumnIndex(Table.Cols.NUMBER));
+        long number = getLong(getColumnIndex(Table.Cols.NUMBER));
         String position = getString(getColumnIndex(Table.Cols.POSITION));
         String company = getString(getColumnIndex(Table.Cols.COMPANY));
         String mail = getString(getColumnIndex(Table.Cols.MAIL));
