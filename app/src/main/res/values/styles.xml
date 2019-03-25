@@ -2,16 +2,34 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+        <!-- Light Mode. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
-    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+        <item name="backgroundColor">#dfe4ea</item>
+        <item name="textColor">#3d3d3d</item>
+        <item name="buttonColor">#27ae60</item>
+        <item name="toolBarColor">#00cec9</item>
+        <item name="titleColor">#3d3d3d</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
+    </style>
+
+    <style name="NightMode" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Night mode. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundColor">#05293b</item>
+        <item name="textColor">#e7dfdf</item>
+        <item name="buttonColor">#27ae60</item>
+        <item name="toolBarColor">#031c29</item>
+        <item name="titleColor">#f7f1e3</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
 </resources>

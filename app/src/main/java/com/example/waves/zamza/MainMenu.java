@@ -17,14 +17,17 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toolbar;
 
+import java.util.Set;
+
 
 public class MainMenu extends AppCompatActivity {
 
     private ImageButton settings ;
     private Toolbar toolbar;
-    SettingsActivity settingsActivity = new SettingsActivity();
+    SaveNightMode saveNightMode;
 
     protected void  onCreate (Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -33,9 +36,7 @@ public class MainMenu extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment;
-                fragment = (settingsActivity);
-                loadFragment(fragment);
+              startSettings();
             }
         });
     }
