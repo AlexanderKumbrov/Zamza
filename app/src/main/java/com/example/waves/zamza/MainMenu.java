@@ -1,42 +1,55 @@
 package com.example.waves.zamza;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.*;
 import android.content.pm.ActivityInfo;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toolbar;
 
-import java.util.Set;
-
 
 public class MainMenu extends AppCompatActivity {
 
-    private ImageButton settings ;
-    private Toolbar toolbar;
-    SaveNightMode saveNightMode;
+    private ImageButton nightMode;
+    private boolean flagNightMode;
+    private SaveNightMode saveNightMode;
 
     protected void  onCreate (Bundle savedInstanceState){
+
+        saveNightMode = new SaveNightMode(this);
+        if (saveNightMode.loadNightModeState() ==true){
+            setTheme(R.style.NightMode);
+        }else {
+            setTheme(R.style.AppTheme);
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        settings = (ImageButton)findViewById(R.id.settings);
+        if (saveNightMode.loadNightModeState() == true){
+            flagNightMode = false;
+        }
+        nightMode = (ImageButton)findViewById(R.id.night_mode);
 
-        settings.setOnClickListener(new View.OnClickListener() {
+        nightMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              startSettings();
+if (flagNightMode){
+    nightMode.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.night_mode_moon));
+    saveNightMode.savedNightState(true);
+    appRestart();
+    flagNightMode = false;
+}
+else if (!flagNightMode){
+    nightMode.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.night_mode_sun));
+    saveNightMode.savedNightState(false);
+    appRestart();
+    flagNightMode = true;
+}
             }
         });
     }
@@ -66,5 +79,10 @@ public class MainMenu extends AppCompatActivity {
         transaction.replace(R.id.fragment_container , fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+    public void appRestart(){
+        Intent restart = new Intent(getApplicationContext(),MainMenu.class);
+        startActivity(restart);
+        finish();
     }
 }
