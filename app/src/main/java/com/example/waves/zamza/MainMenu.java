@@ -2,6 +2,7 @@ package com.example.waves.zamza;
 
 import android.content.*;
 import android.content.pm.ActivityInfo;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -14,7 +15,7 @@ import android.widget.Toolbar;
 
 public class MainMenu extends AppCompatActivity {
 
-    private ImageButton nightMode;
+    private FloatingActionButton floatSwitch;
     private boolean flagNightMode;
     private SaveNightMode saveNightMode;
 
@@ -31,25 +32,23 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.main_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         if (saveNightMode.loadNightModeState() == true){
-            flagNightMode = false;
+            flagNightMode = !flagNightMode;
         }
-        nightMode = (ImageButton)findViewById(R.id.night_mode);
-
-        nightMode.setOnClickListener(new View.OnClickListener() {
+        floatSwitch = (FloatingActionButton) findViewById(R.id.night_mode);
+        floatSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-if (flagNightMode){
-    nightMode.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.night_mode_moon));
-    saveNightMode.savedNightState(true);
-    appRestart();
-    flagNightMode = false;
-}
-else if (!flagNightMode){
-    nightMode.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.night_mode_sun));
-    saveNightMode.savedNightState(false);
-    appRestart();
-    flagNightMode = true;
-}
+                flagNightMode = !flagNightMode;
+                if (flagNightMode){
+                    saveNightMode.savedNightState(true);
+                    appRestart();
+                    flagNightMode = false;
+                }
+                else {
+                    saveNightMode.savedNightState(false);
+                    appRestart();
+                    flagNightMode = true;
+                }
             }
         });
     }

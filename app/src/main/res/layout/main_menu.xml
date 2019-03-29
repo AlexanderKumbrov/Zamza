@@ -3,12 +3,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/backgroundColor">
+
     <include layout="@layout/tool_bar"/>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-    android:layout_below="@+id/tool_bar"
-    android:orientation="vertical"
-    android:id="@+id/buttons">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tool_bar"
+            android:orientation="vertical"
+            android:id="@+id/buttons">
 
         <Button android:layout_width="match_parent"
                      android:layout_height="match_parent"
@@ -55,4 +58,16 @@
 
     <!--</CalendarView>-->
     <!--</ScrollView>-->
+    <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="30dp"
+            android:onClick="contactBook"
+            android:id="@+id/night_mode"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/night_mode_moon"
+            android:layout_alignParentEnd="true"/>
 </RelativeLayout>
