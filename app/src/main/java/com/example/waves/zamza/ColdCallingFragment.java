@@ -1,7 +1,9 @@
 package com.example.waves.zamza;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -18,17 +20,18 @@ public class ColdCallingFragment extends Fragment {
 
     private RecyclerView mColdCallingRecyclerView;
     private ColdAdapter mAdapter;
+    private Callbacks mCallbacks;
 
     private FloatingActionButton addContact;
-    private Callbacks mCallbacks;
     public interface Callbacks {
         void onColdSelected(ColdCalling coldCalling);
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        super.onAttach(context);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mCallbacks = (Callbacks)activity;
+//        super.onAttach(context);
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

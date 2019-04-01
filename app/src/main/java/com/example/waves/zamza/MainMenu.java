@@ -68,10 +68,6 @@ public class MainMenu extends AppCompatActivity {
         Intent sales = new Intent(this ,SalesTraining.class);
         startActivity(sales);
     }
-    public void startSettings (){
-        Intent settings = new Intent(this ,SettingsActivity.class);
-        startActivity(settings);
-    }
 
     public void loadFragment (Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
