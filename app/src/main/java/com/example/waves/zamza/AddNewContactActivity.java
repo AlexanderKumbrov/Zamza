@@ -2,6 +2,7 @@ package com.example.waves.zamza;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -14,9 +15,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.UUID;
+
 public class AddNewContactActivity extends AppCompatActivity {
     public static final int REQUEST_CONTACT = 1;
-
+    private static final String EXTRA_CALLING_ID = "com.example.waves.zamza.callingId";
     public static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 6;
     private String name ;
     private String number ;
@@ -28,7 +31,7 @@ public class AddNewContactActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_added_number);
+        setContentView(R.layout.activity_contact_number);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         final Intent addContactBook = new Intent(Intent.ACTION_PICK , ContactsContract.Contacts.CONTENT_URI);
         nameContact = (EditText)findViewById(R.id.name_contact_edit);
@@ -41,7 +44,11 @@ startActivityForResult(addContactBook , REQUEST_CONTACT);
             }
         });
 }
-
+public static Intent newIntent (Context packageContext , UUID callingId){
+        Intent intent= new Intent(packageContext , AddNewContactActivity.class);
+        intent.putExtra(EXTRA_CALLING_ID , callingId);
+        return intent;
+}
 @Override
 public void onActivityResult (int requestCode , int result , Intent data){
         if (result != Activity.RESULT_OK){

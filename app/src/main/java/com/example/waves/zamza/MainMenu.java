@@ -2,12 +2,15 @@ package com.example.waves.zamza;
 
 import android.content.*;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toolbar;
@@ -51,6 +54,10 @@ public class MainMenu extends AppCompatActivity {
                 }
             }
         });
+    }
+    public boolean onCreateOptionsMenu (Menu menu ){
+        getMenuInflater().inflate(R.menu.menu_main_tool_bar , menu);
+return true;
     }
     public void cold_calling (View view){
         Intent cold = new Intent(this , ColdCallingActivity.class);

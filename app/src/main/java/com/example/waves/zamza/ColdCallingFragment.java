@@ -28,16 +28,21 @@ public class ColdCallingFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mCallbacks = (Callbacks)activity;
-//        super.onAttach(context);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        super.onAttach(context);
+        mCallbacks = (Callbacks)context;
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setHasOptionsMenu(true);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu , MenuInflater menuInflater){
+        super.onCreateOptionsMenu(menu , menuInflater);
+        menuInflater.inflate(R.menu.menu_main_tool_bar , menu);
     }
 
     @Nullable
@@ -50,7 +55,10 @@ public class ColdCallingFragment extends Fragment {
         addContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addContact();
+                ColdCalling coldCalling = new ColdCalling();
+                ColdCallingLab.get(getActivity()).addNumber(coldCalling);
+                Intent intent =  AddNewContactActivity.newIntent(getActivity(),coldCalling.getUuidCalling());
+                startActivity(intent);
             }
         });
 
@@ -184,5 +192,6 @@ public class ColdCallingFragment extends Fragment {
         ColdCalling coldCalling = new ColdCalling();
         ColdCallingLab.get(getActivity()).addNumber(coldCalling);
         updateUI();
+        mCallbacks.onColdSelected(coldCalling);
     }
 }
