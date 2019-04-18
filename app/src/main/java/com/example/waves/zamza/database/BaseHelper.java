@@ -17,7 +17,10 @@ private static final String DATABASE_NAME = "zamzaBase.db";
         db.execSQL("create table " + Table.NAME+ "("+
         "_id integer primary key autoincrement,"
                 +Table.Cols.UUID + ", "+
-        Table.Cols.NAME + ", " + Table.Cols.NUMBER + ","+ Table.Cols.POSITION + " ," + Table.Cols.COMPANY
+        Table.Cols.NAME + ", "
+                + Table.Cols.NUMBER + ","
+                + Table.Cols.POSITION + " ,"
+                + Table.Cols.COMPANY
                 + " ,"+ Table.Cols.MAIL+")");
     }
 

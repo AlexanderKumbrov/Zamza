@@ -2,18 +2,13 @@ package com.example.waves.zamza;
 
 import android.content.*;
 import android.content.pm.ActivityInfo;
-import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.Toolbar;
 
 
 public class MainMenu extends AppCompatActivity {
@@ -60,7 +55,7 @@ public class MainMenu extends AppCompatActivity {
 return true;
     }
     public void cold_calling (View view){
-        Intent cold = new Intent(this , ColdCallingActivity.class);
+        Intent cold = new Intent(this , ColdCallingListActivity.class);
         startActivity(cold);
     }
     public void debt_repayment_term(View view){

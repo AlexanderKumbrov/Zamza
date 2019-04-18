@@ -29,6 +29,9 @@ public class CursorWrapperZamza extends CursorWrapper {
         ColdCalling coldCalling = new ColdCalling(UUID.fromString(uuidString));
         coldCalling.setNameCalling(name);
         coldCalling.setNumberCalling(number);
+        coldCalling.setPositionCalling(position);
+        coldCalling.setCompanyCalling(company);
+        coldCalling.setMailCalling(mail);
 
         return coldCalling;
     }

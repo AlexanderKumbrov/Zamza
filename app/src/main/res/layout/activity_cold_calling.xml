@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:focusable="true"
                     android:hint="Mail"
-            android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress"/>
         </LinearLayout>
 
     </ScrollView>

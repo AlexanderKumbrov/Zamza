@@ -13,9 +13,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SettingsActivity">
+        <activity android:name=".ColdCallingActivity">
         </activity>
-        <activity android:name=".AddNewContactActivity">
+        <activity android:name=".SettingsActivity">
         </activity>
         <activity android:name=".SalesTraining">
         </activity>
@@ -25,8 +25,8 @@
         </activity>
         <activity
                 android:name=".MainMenu"
-                android:label="@string/app_name"
                 android:configChanges="orientation"
+                android:label="@string/app_name"
                 android:screenOrientation="sensorLandscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -34,7 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ColdCallingActivity"/>
+        <activity
+                android:name=".ColdCallingListActivity"
+                android:parentActivityName=".MainMenu"/>
     </application>
 
 </manifest>

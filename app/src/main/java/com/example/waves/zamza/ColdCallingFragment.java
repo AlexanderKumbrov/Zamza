@@ -1,197 +1,151 @@
 package com.example.waves.zamza;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.*;
-import android.widget.*;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
-import java.util.List;
+import java.util.UUID;
 
 public class ColdCallingFragment extends Fragment {
-
-    private RecyclerView mColdCallingRecyclerView;
-    private ColdAdapter mAdapter;
-    private Callbacks mCallbacks;
-
-    private FloatingActionButton addContact;
-    public interface Callbacks {
-        void onColdSelected(ColdCalling coldCalling);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        super.onAttach(context);
-        mCallbacks = (Callbacks)context;
-    }
+    public static final int REQUEST_CONTACT = 1;
+    public static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 6;
+    private String name ;
+    private String number ;
+    private FloatingActionButton contactBook;
+    private Button okButton ;
+    private ColdCalling mColdCalling;
+    private EditText nameContact;
+    private EditText numberContact ;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-    }
-    @Override
-    public void onCreateOptionsMenu(Menu menu , MenuInflater menuInflater){
-        super.onCreateOptionsMenu(menu , menuInflater);
-        menuInflater.inflate(R.menu.menu_main_tool_bar , menu);
-    }
 
-    @Nullable
+}
     @Override
-    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cold_calling, container, false);
-        addContact = (FloatingActionButton)view.findViewById(R.id.add_contact);
-        mColdCallingRecyclerView = (RecyclerView) view.findViewById(R.id.cold_calling_rv);
-        mColdCallingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        addContact.setOnClickListener(new View.OnClickListener() {
+    public View onCreateView(LayoutInflater inflater , final ViewGroup container , Bundle savedInstanceState){
+        View view = inflater.inflate(R.layout.activity_cold_calling, container, false);
+getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        final Intent addContactBook = new Intent(Intent.ACTION_PICK , ContactsContract.Contacts.CONTENT_URI);
+        nameContact = (EditText)view.findViewById(R.id.name_contact_edit);
+        nameContact.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                ColdCalling coldCalling = new ColdCalling();
-                ColdCallingLab.get(getActivity()).addNumber(coldCalling);
-                Intent intent =  AddNewContactActivity.newIntent(getActivity(),coldCalling.getUuidCalling());
-                startActivity(intent);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                mColdCalling.setNameCalling(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
-
-//drag & drop swipe delete number
-        final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                ItemTouchHelper.RIGHT) {
+        numberContact = (EditText)view.findViewById(R.id.number_contact_edit);
+        contactBook = (FloatingActionButton)view.findViewById(R.id.contact_book);
+        contactBook.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public boolean isLongPressDragEnabled(){
-                return true;
-            }
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                if (direction == ItemTouchHelper.RIGHT) {
-                    mAdapter.deleteContact(viewHolder.getAdapterPosition());
-                    updateUI();
-                }
+            public void onClick(View v) {
+                startActivityForResult(addContactBook , REQUEST_CONTACT);
             }
         });
-
-        itemTouchHelper.attachToRecyclerView(mColdCallingRecyclerView);
-
         return view;
     }
-
-    public void updateUI() {
-        ColdCallingLab coldCallingLab = ColdCallingLab.get(getActivity());
-        List<ColdCalling> coldCallings = coldCallingLab.getmColdCalling();
-
-        if (mAdapter == null) {
-            mAdapter = new ColdAdapter(coldCallings);
-            mColdCallingRecyclerView.setAdapter(mAdapter);
-        } else {
-            mAdapter.setNumber(coldCallings);
-            mAdapter.notifyDataSetChanged();
+//public static Intent newIntent (Context packageContext , UUID callingId){
+//        Intent intent= new Intent(packageContext , ColdCallingFragment.class);
+//        intent.putExtra(EXTRA_CALLING_ID , callingId);
+//        return intent;
+//}
+@Override
+public void onActivityResult (int requestCode , int result , Intent data){
+        if (result != Activity.RESULT_OK){
+            return;
         }
+        if (requestCode == REQUEST_CONTACT && data != null){
+            Uri contactUri = data.getData();
 
+            String [] queryField = new String[]{
+                    ContactsContract.Contacts.DISPLAY_NAME
+            };
+            Cursor c = getActivity().getContentResolver().query(contactUri , queryField , null , null , null);
+            try {
+                if (c.getCount() == 0){
+                    return;
+                }
+                c.moveToFirst();
+                String nameContactC  = c.getString(0);
+//                mColdCalling.setNameCalling(nameContactC);
+                nameContact.setText(nameContactC);
+            }
+            finally {
+                c.close();
+            }
+            callNumber();
+        }
+}
 
-
+private void callNumber(){
+    Cursor cursor = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI , new String[]
+                    {ContactsContract.CommonDataKinds.Phone.NUMBER}, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=?"
+            ,new String[]{String.valueOf(mColdCalling.getNumberCalling())},null);
+    try {
+        if (cursor == null || cursor.getCount() == 0){
+            return;
+        }
+        cursor.moveToFirst();
+        String phoneNumber = cursor.getString(0);
+        numberContact.setText(phoneNumber);
     }
-    private class ColdHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ColdCalling mColdCalling;
-
-        private TextView mNameNumber;
-        private TextView mNumber;
-
-
-        public ColdHolder(View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-
-            mNameNumber = (TextView)
-                    itemView.findViewById(R.id.name);
-            mNumber = (TextView)
-                    itemView.findViewById(R.id.number);
-
-        }
-
-        public void bindCold(ColdCalling coldCalling) {
-            mColdCalling = coldCalling;
-            mNameNumber.setText(mColdCalling.getNameCalling());
-//            mNumber.setLon(mColdCalling.getNumberCalling());
-
-        }
-
-        @Override
-        public void onClick(View view) {
-            mCallbacks.onColdSelected(mColdCalling);
-        }
+    finally {
+        cursor.close();
     }
-
-    private class ColdAdapter extends RecyclerView.Adapter<ColdHolder> {
-
-        private List<ColdCalling> mColdCalling;
-
-        public ColdAdapter(List<ColdCalling> coldCallings) {
-            mColdCalling = coldCallings;
+}
+    private void getAllContacts(){
+        StringBuilder stringBuilder = new StringBuilder();
+        ContentResolver contentResolver = getActivity().getContentResolver();
+        Cursor cursor = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null ,null , null);
         }
+        if (cursor.getCount()>0){
+            while (cursor.moveToNext()) {
+                String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)));
+                if (hasPhoneNumber > 0) {
+                    Cursor cursor1 = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null
+                            , ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
 
-        @Override
-        public ColdHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-
-            View view = layoutInflater.inflate(R.layout.list_item_cold_calling, parent, false);
-            return new ColdHolder(view);
+                    while (cursor1.moveToNext()) {
+                        String phoneNumber = cursor1.getString(cursor1.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        stringBuilder.append("Контакт :").append(name).append(" , Номер :").append(phoneNumber).append("\n\n");
+                    }
+                    cursor1.close();
+                }
+            }
         }
-
-        @Override
-        public void onBindViewHolder(ColdHolder holder, int position) {
-            ColdCalling coldCalling = mColdCalling.get(position);
-            holder.bindCold(coldCalling);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mColdCalling.size();
-        }
-
-        public void setNumber(List<ColdCalling> coldCallings) {
-            mColdCalling = coldCallings;
-        }
-
-        public void deleteContact(int position) {
-            ColdCallingLab coldCallingLab = ColdCallingLab.get(getActivity());
-            ColdCalling coldCalling = mColdCalling.get(position);
-            coldCallingLab.deleteNumber(coldCalling);
-            mAdapter.notifyItemRemoved(position);
-            mAdapter.notifyItemRangeChanged(position, coldCallingLab.getmColdCalling().size());
-            Toast.makeText(getContext(), R.string.delete_number, Toast.LENGTH_SHORT).show();
-        }
+        cursor.close();
     }
+private void updateColdCalling (){
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        updateUI();
-    }
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mCallbacks = null;
-    }
-
-    private void addContact() {
-        ColdCalling coldCalling = new ColdCalling();
-        ColdCallingLab.get(getActivity()).addNumber(coldCalling);
-        updateUI();
-        mCallbacks.onColdSelected(coldCalling);
     }
 }
