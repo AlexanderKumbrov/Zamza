@@ -22,6 +22,7 @@ import android.widget.EditText;
 import java.util.UUID;
 
 public class ColdCallingFragment extends Fragment {
+    private final static String ARG_CALL_ID = "callingId";
     public static final int REQUEST_CONTACT = 1;
     public static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 6;
     private String name ;
@@ -32,10 +33,20 @@ public class ColdCallingFragment extends Fragment {
     private EditText nameContact;
     private EditText numberContact ;
 
+    public static ColdCallingFragment newInstance (UUID callId){
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_CALL_ID , callId);
+        ColdCallingFragment fragment = new ColdCallingFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
      public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        UUID callId = (UUID)getArguments().getSerializable(ARG_CALL_ID);
+        mColdCalling =ColdCallingLab.get(getActivity()).getColdCalling(callId);
+
 
 }
     @Override
@@ -52,7 +63,7 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                mColdCalling.setNameCalling(s.toString());
+                mColdCalling.setNameCalling(s.toString());
             }
 
             @Override

@@ -81,8 +81,13 @@ public class ColdCallingListFragment extends Fragment {
         });
 
         itemTouchHelper.attachToRecyclerView(mColdCallingRecyclerView);
-
+updateUI();
         return view;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
     }
 
     public void updateUI() {
@@ -96,8 +101,6 @@ public class ColdCallingListFragment extends Fragment {
             mAdapter.setNumber(coldCallings);
             mAdapter.notifyDataSetChanged();
         }
-
-
 
     }
     private class ColdHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -126,7 +129,8 @@ public class ColdCallingListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            mCallbacks.onColdSelected(mColdCalling);
+            Intent intent = ColdCallingActivity.newIntent(getActivity(),mColdCalling.getUuidCalling());
+            startActivity(intent);
         }
     }
 
@@ -171,11 +175,7 @@ public class ColdCallingListFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        updateUI();
-    }
+
 
 
     @Override

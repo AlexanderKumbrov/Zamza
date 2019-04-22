@@ -57,31 +57,11 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.
         String uuidString  = coldCalling.getUuidCalling().toString();
         ContentValues values = getContentValues(coldCalling);
 
-        mDataBase.update(Table.NAME , values , Table.Cols.UUID + " ?"
+        mDataBase.update(Table.NAME , values , Table.Cols.UUID + " =?"
                 , new String[]{uuidString});
     }
-    private static ContentValues getContentValues (ColdCalling coldCalling){
-        ContentValues values = new ContentValues();
-        values.put(Table.Cols.UUID , coldCalling.getUuidCalling().toString());
-        values.put(Table.Cols.NAME, coldCalling.getNameCalling());
-        values.put(Table.Cols.NUMBER , Long.toString(coldCalling.getNumberCalling()));
-        values.put(Table.Cols.POSITION , coldCalling.getPositionCalling());
-        values.put(Table.Cols.COMPANY , coldCalling.getCompanyCalling());
-        values.put(Table.Cols.MAIL , coldCalling.getMailCalling());
-        return values;
-    }
-    private CursorWrapperZamza queryNumber (String whereClause , String[] whereArgs){
-        Cursor cursor = mDataBase.query(Table.NAME ,
-                null ,
-                whereClause,
-                whereArgs,
-                null,
-                null,
-                null);
-        return new CursorWrapperZamza(cursor);
-    }
     public ColdCalling getColdCalling (UUID idCold){
-        CursorWrapperZamza cursor = queryNumber(Table.Cols.UUID + " ?" ,
+        CursorWrapperZamza cursor = queryNumber(Table.Cols.UUID + " =?" ,
                 new String[]{idCold.toString()});
         try {
             if (cursor.getCount() == 0){
@@ -94,4 +74,26 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.
             cursor.close();
         }
     }
+    private static ContentValues getContentValues (ColdCalling coldCalling){
+        ContentValues values = new ContentValues();
+        values.put(Table.Cols.UUID , coldCalling.getUuidCalling().toString());
+        values.put(Table.Cols.NAME, coldCalling.getNameCalling());
+        values.put(Table.Cols.NUMBER , Long.toString(coldCalling.getNumberCalling()));
+        values.put(Table.Cols.POSITION , coldCalling.getPositionCalling());
+        values.put(Table.Cols.COMPANY , coldCalling.getCompanyCalling());
+        values.put(Table.Cols.MAIL , coldCalling.getMailCalling());
+        return values;
+    }
+    private CursorWrapperZamza queryNumber (String whereClause , String[] whereArgs){
+        Cursor cursor = mDataBase.query(
+                Table.NAME ,
+                null ,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                null);
+        return new CursorWrapperZamza(cursor);
+    }
+
 }
