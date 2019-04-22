@@ -49,6 +49,11 @@ public class ColdCallingFragment extends Fragment {
 
 
 }
+@Override
+public void onPause(){
+        super.onPause();
+        ColdCallingLab.get(getActivity()).updateNumber(mColdCalling);
+}
     @Override
     public View onCreateView(LayoutInflater inflater , final ViewGroup container , Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.activity_cold_calling, container, false);
