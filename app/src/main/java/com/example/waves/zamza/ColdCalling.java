@@ -4,20 +4,30 @@ import java.util.UUID;
 
 public class ColdCalling {
     private String nameCalling;
-
-    public long getNumberCalling() {
-        return numberCalling;
-    }
-
-    public void setNumberCalling(long numberCalling) {
-        this.numberCalling = numberCalling;
-    }
-
-    private long numberCalling;
+    private String numberCalling;
     private UUID uuidCalling;
+    private long contactId;
     private String positionCalling;
     private String companyCalling;
     private String mailCalling;
+
+
+    public String getNumberCalling() {
+        return numberCalling;
+    }
+
+    public void setNumberCalling(String numberCalling) {
+        this.numberCalling = numberCalling;
+    }
+
+    public long getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(long contactId) {
+        this.contactId = contactId;
+    }
+
     public String getPositionCalling() {
         return positionCalling;
     }

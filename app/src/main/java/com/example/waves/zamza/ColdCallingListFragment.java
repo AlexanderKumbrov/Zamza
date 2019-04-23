@@ -18,12 +18,10 @@ public class ColdCallingListFragment extends Fragment {
 
     private RecyclerView mColdCallingRecyclerView;
     private ColdAdapter mAdapter;
-    private Callbacks mCallbacks;
+
 
     private FloatingActionButton addContact;
-    public interface Callbacks {
-        void onColdSelected(ColdCalling coldCalling);
-    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +36,7 @@ public class ColdCallingListFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         super.onAttach(context);
-        mCallbacks = (Callbacks)context;
+
     }
 
 
@@ -48,6 +46,7 @@ public class ColdCallingListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cold_calling, container, false);
         addContact = (FloatingActionButton)view.findViewById(R.id.add_contact);
         mColdCallingRecyclerView = (RecyclerView) view.findViewById(R.id.cold_calling_rv);
+
         mColdCallingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         addContact.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +122,7 @@ updateUI();
         public void bindCold(ColdCalling coldCalling) {
             mColdCalling = coldCalling;
             mNameNumber.setText(mColdCalling.getNameCalling());
-//             mNumber.setText(getString((int) mColdCalling.getNumberCalling()));
+            mNumber.setText(mColdCalling.getNumberCalling());
 
         }
 
@@ -138,6 +137,12 @@ updateUI();
 
         private List<ColdCalling> mColdCalling;
 
+        @Override
+        public void onBindViewHolder(ColdHolder holder, int position) {
+            ColdCalling coldCalling = mColdCalling.get(position);
+            holder.bindCold(coldCalling);
+        }
+
         public ColdAdapter(List<ColdCalling> coldCallings) {
             mColdCalling = coldCallings;
         }
@@ -150,11 +155,7 @@ updateUI();
             return new ColdHolder(view);
         }
 
-        @Override
-        public void onBindViewHolder(ColdHolder holder, int position) {
-            ColdCalling coldCalling = mColdCalling.get(position);
-            holder.bindCold(coldCalling);
-        }
+
 
         @Override
         public int getItemCount() {
@@ -175,19 +176,16 @@ updateUI();
         }
     }
 
-
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mCallbacks = null;
-    }
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mCallbacks = null;
+//    }
 
     private void addContact() {
         ColdCalling coldCalling = new ColdCalling();
         ColdCallingLab.get(getActivity()).addNumber(coldCalling);
         updateUI();
-        mCallbacks.onColdSelected(coldCalling);
+
     }
 }

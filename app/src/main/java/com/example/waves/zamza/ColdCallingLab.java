@@ -49,10 +49,14 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.
         }
         return coldCallings;
     }
+
+
     public void addNumber (ColdCalling calling){
         ContentValues values = getContentValues(calling);
         mDataBase.insert(Table.NAME , null , values);
     }
+
+
     public void updateNumber (ColdCalling coldCalling){
         String uuidString  = coldCalling.getUuidCalling().toString();
         ContentValues values = getContentValues(coldCalling);
@@ -60,6 +64,8 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.
         mDataBase.update(Table.NAME , values , Table.Cols.UUID + " =?"
                 , new String[]{uuidString});
     }
+
+
     public ColdCalling getColdCalling (UUID idCold){
         CursorWrapperZamza cursor = queryNumber(Table.Cols.UUID + " =?" ,
                 new String[]{idCold.toString()});
@@ -78,10 +84,11 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.
         ContentValues values = new ContentValues();
         values.put(Table.Cols.UUID , coldCalling.getUuidCalling().toString());
         values.put(Table.Cols.NAME, coldCalling.getNameCalling());
-        values.put(Table.Cols.NUMBER , Long.toString(coldCalling.getNumberCalling()));
+        values.put(Table.Cols.NUMBER ,(coldCalling.getNumberCalling()));
         values.put(Table.Cols.POSITION , coldCalling.getPositionCalling());
         values.put(Table.Cols.COMPANY , coldCalling.getCompanyCalling());
         values.put(Table.Cols.MAIL , coldCalling.getMailCalling());
+        values.put(Table.Cols.CONTACT_ID , coldCalling.getContactId());
         return values;
     }
     private CursorWrapperZamza queryNumber (String whereClause , String[] whereArgs){

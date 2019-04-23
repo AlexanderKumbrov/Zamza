@@ -10,6 +10,7 @@ public class DbSchema {
             public static final String POSITION = "position";
             public static final String COMPANY = "company";
             public static final String MAIL = "mail";
+            public static final String CONTACT_ID = "contact_id";
 
         }
     }

@@ -25,10 +25,8 @@ public class ColdCallingFragment extends Fragment {
     private final static String ARG_CALL_ID = "callingId";
     public static final int REQUEST_CONTACT = 1;
     public static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 6;
-    private String name ;
-    private String number ;
+
     private FloatingActionButton contactBook;
-    private Button okButton ;
     private ColdCalling mColdCalling;
     private EditText nameContact;
     private EditText numberContact ;
@@ -36,10 +34,12 @@ public class ColdCallingFragment extends Fragment {
     public static ColdCallingFragment newInstance (UUID callId){
         Bundle args = new Bundle();
         args.putSerializable(ARG_CALL_ID , callId);
+
         ColdCallingFragment fragment = new ColdCallingFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
      public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +76,7 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
             }
         });
+
         numberContact = (EditText)view.findViewById(R.id.number_contact_edit);
         contactBook = (FloatingActionButton)view.findViewById(R.id.contact_book);
         contactBook.setOnClickListener(new View.OnClickListener() {
@@ -84,38 +85,59 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 startActivityForResult(addContactBook , REQUEST_CONTACT);
             }
         });
+        nameContact.setText(mColdCalling.getNameCalling());
+        numberContact.setText(mColdCalling.getNumberCalling());
         return view;
     }
-//public static Intent newIntent (Context packageContext , UUID callingId){
-//        Intent intent= new Intent(packageContext , ColdCallingFragment.class);
-//        intent.putExtra(EXTRA_CALLING_ID , callingId);
-//        return intent;
-//}
+
 @Override
 public void onActivityResult (int requestCode , int result , Intent data){
-        if (result != Activity.RESULT_OK){
-            return;
-        }
+
         if (requestCode == REQUEST_CONTACT && data != null){
             Uri contactUri = data.getData();
 
-            String [] queryField = new String[]{
-                    ContactsContract.Contacts.DISPLAY_NAME
+
+            String[] queryField = new String[]{
+                    ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts._ID
             };
-            Cursor c = getActivity().getContentResolver().query(contactUri , queryField , null , null , null);
-            try {
-                if (c.getCount() == 0){
-                    return;
-                }
-                c.moveToFirst();
-                String nameContactC  = c.getString(0);
-//                mColdCalling.setNameCalling(nameContactC);
-                nameContact.setText(nameContactC);
+            Cursor c = getActivity().getContentResolver().query(contactUri , queryField , null , null   , null  );
+
+        try {
+            if (c != null && c.getCount() == 0){
+                return;
             }
-            finally {
-                c.close();
+            c.moveToFirst();
+            int contactIndex = c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+            int contactIdIndex = c.getColumnIndex(ContactsContract.Contacts._ID);
+            String nameContactCursor = c.getString(contactIndex);
+            int contactId = c.getInt(contactIdIndex);
+
+            mColdCalling.setNameCalling(nameContactCursor);
+            mColdCalling.setContactId(contactId);
+
+            nameContact.setText(mColdCalling.getNameCalling());
+        }
+        finally {
+            c.close();
+        }
+        Cursor cursorPhone = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI ,
+                new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER}, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " =?",
+                new String[]{String.valueOf(mColdCalling.getContactId())}, null);
+        try {
+            if (cursorPhone == null || cursorPhone.getCount() == 0){
+                return;
             }
-            callNumber();
+            cursorPhone.moveToFirst();
+            String contactNumber = cursorPhone.getString(0);
+
+            mColdCalling.setNumberCalling(contactNumber);
+
+            numberContact.setText(mColdCalling.getNumberCalling());
+
+        }
+        finally {
+            cursorPhone.close();
+        }
         }
 }
 
