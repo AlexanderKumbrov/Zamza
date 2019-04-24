@@ -22,7 +22,7 @@ import android.widget.EditText;
 import java.util.UUID;
 
 public class ColdCallingFragment extends Fragment {
-    private final static String ARG_CALL_ID = "callingId";
+    private static final String ARG_CALL_ID = "calling_Id";
     public static final int REQUEST_CONTACT = 1;
     public static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 6;
 
@@ -45,7 +45,7 @@ public class ColdCallingFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         UUID callId = (UUID)getArguments().getSerializable(ARG_CALL_ID);
-        mColdCalling =ColdCallingLab.get(getActivity()).getColdCalling(callId);
+        mColdCalling = ColdCallingLab.get(getActivity()).getColdCalling(callId);
 
 
 }

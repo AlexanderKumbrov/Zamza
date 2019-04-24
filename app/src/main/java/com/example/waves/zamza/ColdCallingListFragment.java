@@ -52,7 +52,7 @@ public class ColdCallingListFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ColdCalling coldCalling = new ColdCalling();
-                ColdCallingLab.get(getActivity()).addNumber(coldCalling);
+                ColdCallingLab.get(getActivity()).addContact(coldCalling);
                 Intent intent =  ColdCallingActivity.newIntent(getActivity(),coldCalling.getUuidCalling());
                 startActivity(intent);
             }
@@ -91,7 +91,7 @@ updateUI();
 
     public void updateUI() {
         ColdCallingLab coldCallingLab = ColdCallingLab.get(getActivity());
-        List<ColdCalling> coldCallings = coldCallingLab.getmColdCalling();
+        List<ColdCalling> coldCallings = coldCallingLab.getColdCalling();
 
         if (mAdapter == null) {
             mAdapter = new ColdAdapter(coldCallings);
@@ -171,7 +171,7 @@ updateUI();
             ColdCalling coldCalling = mColdCalling.get(position);
             coldCallingLab.deleteNumber(coldCalling);
             mAdapter.notifyItemRemoved(position);
-            mAdapter.notifyItemRangeChanged(position, coldCallingLab.getmColdCalling().size());
+            mAdapter.notifyItemRangeChanged(position, coldCallingLab.getColdCalling().size());
             Toast.makeText(getContext(), R.string.delete_number, Toast.LENGTH_SHORT).show();
         }
     }
@@ -184,7 +184,7 @@ updateUI();
 
     private void addContact() {
         ColdCalling coldCalling = new ColdCalling();
-        ColdCallingLab.get(getActivity()).addNumber(coldCalling);
+        ColdCallingLab.get(getActivity()).addContact(coldCalling);
         updateUI();
 
     }

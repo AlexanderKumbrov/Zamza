@@ -15,26 +15,28 @@ import static com.example.waves.zamza.database.DbSchema.*;
 
 public class ColdCallingLab {
     private static ColdCallingLab coldCallingLab;
-
     private Context mContext ;
     private SQLiteDatabase mDataBase;
 
-    static ColdCallingLab get(Context context){
+   public static ColdCallingLab get(Context context){
         if (coldCallingLab == null){
             coldCallingLab = new ColdCallingLab(context);
         }
         return coldCallingLab;
     }
     ColdCallingLab(Context context){
+
         mContext = context.getApplicationContext();
         mDataBase = new BaseHelper(mContext).getWritableDatabase();
     }
 
-    public void deleteNumber (ColdCalling coldCalling){
-mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.getUuidCalling().toString()});
+    public void addContact(ColdCalling calling){
+        ContentValues values = getContentValues(calling);
+        mDataBase.insert(Table.NAME , null , values);
     }
-    public List<ColdCalling>getmColdCalling(){
-        List <ColdCalling>coldCallings = new ArrayList<>();
+
+    public List<ColdCalling> getColdCalling(){
+        List <ColdCalling> coldCallings = new ArrayList<>();
 
         CursorWrapperZamza cursor  = queryNumber(null , null);
         try {
@@ -48,21 +50,6 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.
             cursor.close();
         }
         return coldCallings;
-    }
-
-
-    public void addNumber (ColdCalling calling){
-        ContentValues values = getContentValues(calling);
-        mDataBase.insert(Table.NAME , null , values);
-    }
-
-
-    public void updateNumber (ColdCalling coldCalling){
-        String uuidString  = coldCalling.getUuidCalling().toString();
-        ContentValues values = getContentValues(coldCalling);
-
-        mDataBase.update(Table.NAME , values , Table.Cols.UUID + " =?"
-                , new String[]{uuidString});
     }
 
 
@@ -80,6 +67,21 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.
             cursor.close();
         }
     }
+
+    public void updateNumber (ColdCalling coldCalling){
+        String uuidString  = coldCalling.getUuidCalling().toString();
+        ContentValues values = getContentValues(coldCalling);
+
+        mDataBase.update(Table.NAME , values , Table.Cols.UUID + " =? "
+                , new String[]{uuidString});
+    }
+
+
+    public void deleteNumber (ColdCalling coldCalling){
+mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.getUuidCalling().toString()});
+    }
+
+
     private static ContentValues getContentValues (ColdCalling coldCalling){
         ContentValues values = new ContentValues();
         values.put(Table.Cols.UUID , coldCalling.getUuidCalling().toString());

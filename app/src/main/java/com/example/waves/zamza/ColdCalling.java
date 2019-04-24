@@ -61,15 +61,8 @@ public class ColdCalling {
 
     }
 
-
-
-
     public UUID getUuidCalling() {
         return uuidCalling;
-    }
-
-    public void setUuidCalling(UUID uuidCalling) {
-        this.uuidCalling = uuidCalling;
     }
 
     public String getNameCalling() {
