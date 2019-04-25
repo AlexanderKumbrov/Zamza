@@ -176,16 +176,4 @@ updateUI();
         }
     }
 
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mCallbacks = null;
-//    }
-
-    private void addContact() {
-        ColdCalling coldCalling = new ColdCalling();
-        ColdCallingLab.get(getActivity()).addContact(coldCalling);
-        updateUI();
-
-    }
 }
