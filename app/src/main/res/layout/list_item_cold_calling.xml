@@ -8,32 +8,23 @@
               android:layout_height="wrap_content"
               android:id="@+id/name"
               android:text="Name Number"
-              android:textSize="20sp"
+              android:textSize="20sp"/>
 
-    />
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:id="@+id/number"
               android:text="number"
+              android:layout_below="@+id/name"/>
 
-    android:layout_below="@+id/name"/>
-     <Button android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:background="#c0392b"
-             android:id="@+id/delete"
-             android:layout_toLeftOf="@+id/bookmark"
-     />
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#f1c40f"
             android:id="@+id/bookmark"
-            android:layout_toLeftOf="@+id/call"
-    />
+            android:layout_toLeftOf="@+id/call"/>
+
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/call"
-                android:background="@color/colorPrimary"
-                android:layout_alignParentRight="true"
-
-    />
+            android:background="@color/colorPrimary"
+            android:layout_alignParentRight="true"/>
 </RelativeLayout>

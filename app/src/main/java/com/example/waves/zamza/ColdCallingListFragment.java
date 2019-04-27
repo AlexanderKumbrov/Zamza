@@ -128,7 +128,7 @@ updateUI();
 
         @Override
         public void onClick(View view) {
-            Intent intent = ColdCallingActivity.newIntent(getActivity(),mColdCalling.getUuidCalling());
+            Intent intent = ColdCallingActivity.newIntentView(getActivity(),mColdCalling.getUuidCalling());
             startActivity(intent);
         }
     }

@@ -11,11 +11,11 @@
             android:text="OK"
             android:id="@+id/ok_button"
             android:onClick="test"/>
-
+    
         <LinearLayout
                 android:layout_marginTop="80dp"
                 android:layout_width="match_parent"
-                android:layout_height="310dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
             <TextView
@@ -23,8 +23,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Edit Name"
-                    android:typeface="serif"
-                    android:textSize="17sp"
                     android:id="@+id/name_contact"/>
             <EditText
                     android:layout_width="match_parent"
@@ -32,82 +30,68 @@
                     android:id="@+id/name_contact_edit"
                     android:background="@drawable/custom_edit_text"
                     android:paddingLeft="10dp"
-                    android:layout_weight="2"
                     android:layout_marginHorizontal="30dp"
+                    android:layout_weight="1"
                     android:hint="Name"
                     />
-
-
+            
             <TextView android:layout_gravity="center"
                     android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Number Phone"
-                      android:layout_weight=".2"
-                      android:id="@+id/number_contact"
-                      android:typeface="serif"
-                      android:textSize="17sp"/>
+                      android:id="@+id/number_contact"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:hint="Number"
                     android:id="@+id/number_contact_edit"
                     android:inputType="number"
-                    android:background="@drawable/custom_edit_text"
                     android:paddingLeft="10dp"
-                    android:layout_marginHorizontal="30dp"/>
+                    android:layout_marginHorizontal="30dp"
+
+                    android:background="@drawable/custom_edit_text"/>
 
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Position"
                       android:id="@+id/position"
-                      android:layout_gravity="center"
-                      android:typeface="serif"
-                      android:textSize="17sp"/>
+                      android:layout_gravity="center"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:hint="Position"
-                    android:background="@drawable/custom_edit_text"
-                    android:paddingLeft="10dp"
-                    android:layout_marginHorizontal="30dp"/>
+                    android:background="@drawable/custom_edit_text"/>
 
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Company"
                       android:id="@+id/company"
-                      android:layout_gravity="center"
-                      android:typeface="serif"
-                      android:textSize="17sp"/>
+                      android:layout_gravity="center"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:focusable="false"
                     android:hint="Name Company"
-                    android:background="@drawable/custom_edit_text"
-                    android:paddingLeft="10dp"
-                    android:layout_marginHorizontal="30dp"/>
+                    android:background="@drawable/custom_edit_text"/>
 
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Mail"
                       android:id="@+id/mail"
-                      android:layout_gravity="center"
-                      android:typeface="serif"
-                      android:textSize="17sp"/>
+                      android:layout_gravity="center"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:focusable="false"
                     android:hint="Mail"
                     android:inputType="textEmailAddress"
-                    android:background="@drawable/custom_edit_text"
-                    android:paddingLeft="10dp"
-                    android:layout_marginHorizontal="30dp"/>
+                    android:background="@drawable/custom_edit_text"/>
         </LinearLayout>
+
 
     <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"

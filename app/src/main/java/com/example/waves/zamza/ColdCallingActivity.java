@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import kotlin.jvm.JvmOverloads;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,11 +24,11 @@ public class ColdCallingActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_CALL_ID,callId);
         return intent;
     }
-//    public static Intent newIntentView (Context packageContext , UUID callId ){
-//        Intent intent = new Intent(packageContext , ColdCallingActivity.class);
-//        intent.putExtra(EXTRA_CALL_ID , callId);
-//        return intent;
-//    }
+    public static Intent newIntentView (Context packageContext , UUID callId ){
+        Intent intent = new Intent(packageContext , ColdCallingActivity.class);
+        intent.putExtra(EXTRA_CALL_ID , callId);
+        return intent;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
