@@ -30,6 +30,9 @@ public class ColdCallingFragment extends Fragment {
     private ColdCalling mColdCalling;
     private EditText nameContact;
     private EditText numberContact ;
+    private EditText positionContact ;
+    private EditText companyContact;
+    private EditText mailContact;
 
     public static ColdCallingFragment newInstance (UUID callId){
         Bundle args = new Bundle();
@@ -60,6 +63,74 @@ public void onPause(){
 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         final Intent addContactBook = new Intent(Intent.ACTION_PICK , ContactsContract.Contacts.CONTENT_URI);
         nameContact = (EditText)view.findViewById(R.id.name_contact_edit);
+        numberContact = (EditText)view.findViewById(R.id.number_contact_edit);
+        positionContact = (EditText)view.findViewById(R.id.position_contact_edit);
+        companyContact = (EditText)view.findViewById(R.id.company_contact_edit);
+        mailContact = (EditText)view.findViewById(R.id.mail_contact_edit);
+        mailContact.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            mColdCalling.setMailCalling(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        positionContact.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            mColdCalling.setPositionCalling(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        companyContact.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            mColdCalling.setCompanyCalling(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        numberContact.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            mColdCalling.setNumberCalling(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         nameContact.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -77,7 +148,6 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
         });
 
-        numberContact = (EditText)view.findViewById(R.id.number_contact_edit);
         contactBook = (FloatingActionButton)view.findViewById(R.id.contact_book);
         contactBook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +157,9 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         });
         nameContact.setText(mColdCalling.getNameCalling());
         numberContact.setText(mColdCalling.getNumberCalling());
+        positionContact.setText(mColdCalling.getPositionCalling());
+        companyContact.setText(mColdCalling.getCompanyCalling());
+        mailContact.setText(mColdCalling.getMailCalling());
         return view;
     }
 
