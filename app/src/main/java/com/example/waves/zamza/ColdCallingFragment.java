@@ -13,9 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -163,6 +161,12 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu (Menu menu , MenuInflater inflater){
+
+    inflater.inflate(R.menu.menu_main_tool_bar , menu);
+    return ;
+    }
 @Override
 public void onActivityResult (int requestCode , int result , Intent data){
 

@@ -11,7 +11,6 @@
         <item name="buttonColor">#27ae60</item>
         <item name="toolBarColor">#00cec9</item>
         <item name="titleColor">#3d3d3d</item>
-        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
     </style>
 
@@ -25,11 +24,8 @@
         <item name="buttonColor">#27ae60</item>
         <item name="toolBarColor">#031c29</item>
         <item name="titleColor">#f7f1e3</item>
-        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
     </style>
 
-    <style name="WindowAnimationTransition">
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
-    </style>
+
 </resources>
