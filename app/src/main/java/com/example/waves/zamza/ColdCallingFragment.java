@@ -31,6 +31,7 @@ public class ColdCallingFragment extends Fragment {
     private EditText positionContact ;
     private EditText companyContact;
     private EditText mailContact;
+    private Button callButton;
 
     public static ColdCallingFragment newInstance (UUID callId){
         Bundle args = new Bundle();
@@ -145,7 +146,14 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
             }
         });
-
+        callButton = (Button)view.findViewById(R.id.call_contact);
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL , Uri.parse("tel:" +mColdCalling.getNumberCalling()));
+                startActivity(intent);
+            }
+        });
         contactBook = (FloatingActionButton)view.findViewById(R.id.contact_book);
         contactBook.setOnClickListener(new View.OnClickListener() {
             @Override

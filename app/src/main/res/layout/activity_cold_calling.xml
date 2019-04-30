@@ -4,17 +4,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:tools="http://schemas.android.com/tools">
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="OK"
-            android:id="@+id/ok_button"
-            android:onClick="test"/>
 
         <LinearLayout
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
+                android:id="@+id/edit_view_linear"
                 android:layout_height="310dp"
                 android:orientation="vertical">
 
@@ -111,11 +105,20 @@
                     android:layout_marginHorizontal="30dp"/>
         </LinearLayout>
 
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_view_linear"
+            android:id="@+id/call_contact"
+            android:background="@drawable/round_buttons"
+            android:layout_marginHorizontal="60dp"
+            android:text="Call"
+            android:layout_marginTop="40dp"/>
+
     <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="3dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginEnd="30dp"
             tools:ignore="RtlHardcoded"
             android:src="@drawable/ic_phone_book"
