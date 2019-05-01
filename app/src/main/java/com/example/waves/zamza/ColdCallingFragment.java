@@ -1,5 +1,6 @@
 package com.example.waves.zamza;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -178,6 +180,7 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 @Override
 public void onActivityResult (int requestCode , int result , Intent data){
 
+
         if (requestCode == REQUEST_CONTACT && data != null){
             Uri contactUri = data.getData();
 
@@ -205,6 +208,7 @@ public void onActivityResult (int requestCode , int result , Intent data){
         finally {
             c.close();
         }
+
         Cursor cursorPhone = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI ,
                 new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER}, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " =?",
                 new String[]{String.valueOf(mColdCalling.getContactId())}, null);
@@ -222,7 +226,7 @@ public void onActivityResult (int requestCode , int result , Intent data){
         }
         finally {
             cursorPhone.close();
+          }
         }
-        }
-}
+    }
 }

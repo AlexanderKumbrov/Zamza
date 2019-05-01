@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/edit_view_linear"
             android:id="@+id/call_contact"
-            android:background="@drawable/round_buttons"
+            android:background="@drawable/call_button"
             android:layout_marginHorizontal="60dp"
             android:text="Call"
             android:layout_marginTop="40dp"/>
