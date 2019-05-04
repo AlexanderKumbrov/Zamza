@@ -20,9 +20,10 @@ private static final String DATABASE_NAME = "zamzaBase.db";
                 +Table.Cols.NAME + ", "
                 +Table.Cols.NUMBER + ","
                 +Table.Cols.POSITION + " ,"
-                +Table.Cols.COMPANY
-                + " ,"+ Table.Cols.MAIL+" ,"
-                + Table.Cols.CONTACT_ID+
+                +Table.Cols.COMPANY  + " ,"
+                +Table.Cols.CALL_COMPLETED +","
+                +Table.Cols.MAIL+" ,"
+                +Table.Cols.CONTACT_ID+
                 ")");
     }
 

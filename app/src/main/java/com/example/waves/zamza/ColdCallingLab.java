@@ -77,8 +77,8 @@ public class ColdCallingLab {
     }
 
 
-    public void deleteNumber (ColdCalling coldCalling){
-mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.getUuidCalling().toString()});
+    public void deleteContact(ColdCalling coldCalling){
+mDataBase.delete(Table.NAME , Table.Cols.UUID + " =?" , new String[]{coldCalling.getUuidCalling().toString()});
     }
 
 
@@ -91,6 +91,7 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + "=?" , new String[]{coldCalling.
         values.put(Table.Cols.COMPANY , coldCalling.getCompanyCalling());
         values.put(Table.Cols.MAIL , coldCalling.getMailCalling());
         values.put(Table.Cols.CONTACT_ID , coldCalling.getContactId());
+        values.put(Table.Cols.CALL_COMPLETED ,coldCalling.isCallComplete()? 1:0);
         return values;
     }
     private CursorWrapperZamza queryNumber (String whereClause , String[] whereArgs){

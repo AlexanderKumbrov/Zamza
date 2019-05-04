@@ -106,6 +106,7 @@ updateUI();
         private ColdCalling mColdCalling;
         private TextView mNameNumber;
         private TextView mNumber;
+        private CheckBox mCallComplete;
 
 
         public ColdHolder(View itemView) {
@@ -116,6 +117,8 @@ updateUI();
                     itemView.findViewById(R.id.name);
             mNumber = (TextView)
                     itemView.findViewById(R.id.number);
+            mCallComplete = (CheckBox)
+                    itemView.findViewById(R.id.call_complete_checkbox);
 
         }
 
@@ -123,6 +126,7 @@ updateUI();
             mColdCalling = coldCalling;
             mNameNumber.setText(mColdCalling.getNameCalling());
             mNumber.setText(mColdCalling.getNumberCalling());
+            mCallComplete.setChecked(mColdCalling.isCallComplete());
 
         }
 
@@ -140,6 +144,7 @@ updateUI();
         @Override
         public void onBindViewHolder(ColdHolder holder, int position) {
             ColdCalling coldCalling = mColdCalling.get(position);
+            holder.bindCold(coldCalling);
             holder.bindCold(coldCalling);
         }
 
@@ -169,7 +174,7 @@ updateUI();
         public void deleteContact(int position) {
             ColdCallingLab coldCallingLab = ColdCallingLab.get(getActivity());
             ColdCalling coldCalling = mColdCalling.get(position);
-            coldCallingLab.deleteNumber(coldCalling);
+            coldCallingLab.deleteContact(coldCalling);
             mAdapter.notifyItemRemoved(position);
             mAdapter.notifyItemRangeChanged(position, coldCallingLab.getColdCalling().size());
             Toast.makeText(getContext(), R.string.delete_number, Toast.LENGTH_SHORT).show();

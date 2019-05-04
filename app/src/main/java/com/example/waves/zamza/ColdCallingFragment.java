@@ -1,9 +1,5 @@
 package com.example.waves.zamza;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -11,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -154,6 +149,8 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL , Uri.parse("tel:" +mColdCalling.getNumberCalling()));
                 startActivity(intent);
+                CallDialogFragment callDialogFragment = new CallDialogFragment();
+                callDialogFragment.show(getFragmentManager(),"");
             }
         });
         contactBook = (FloatingActionButton)view.findViewById(R.id.contact_book);
@@ -171,12 +168,27 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         return view;
     }
 
+    private void deleteContact(){
+        ColdCallingLab coldCallingLab = ColdCallingLab.get(getActivity());
+        coldCallingLab.deleteContact(mColdCalling);
+
+    }
     @Override
     public void onCreateOptionsMenu (Menu menu , MenuInflater inflater){
-
-    inflater.inflate(R.menu.menu_main_tool_bar , menu);
-    return ;
+    inflater.inflate(R.menu.cold_calling_fragment_tool_bar  , menu);
     }
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        switch (item.getItemId()){
+            case R.id.delete_contact:
+                deleteContact();
+                getActivity().finish();
+                return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+        }
+    }
+
 @Override
 public void onActivityResult (int requestCode , int result , Intent data){
 

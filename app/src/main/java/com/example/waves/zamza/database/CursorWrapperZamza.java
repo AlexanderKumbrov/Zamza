@@ -25,6 +25,7 @@ public class CursorWrapperZamza extends CursorWrapper {
         String company = getString(getColumnIndex(Table.Cols.COMPANY));
         String mail = getString(getColumnIndex(Table.Cols.MAIL));
         long contact_id = getLong(getColumnIndex(Table.Cols.CONTACT_ID));
+        int call_completed = getInt(getColumnIndex(Table.Cols.CALL_COMPLETED));
 
         ColdCalling coldCalling = new ColdCalling(UUID.fromString(uuidString));
         coldCalling.setNameCalling(name);
@@ -33,6 +34,7 @@ public class CursorWrapperZamza extends CursorWrapper {
         coldCalling.setCompanyCalling(company);
         coldCalling.setMailCalling(mail);
         coldCalling.setContactId(contact_id);
+        coldCalling.setCallComplete(call_completed !=0);
 
         return coldCalling;
     }

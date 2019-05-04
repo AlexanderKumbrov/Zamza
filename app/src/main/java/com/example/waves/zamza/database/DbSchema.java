@@ -11,6 +11,7 @@ public class DbSchema {
             public static final String COMPANY = "company";
             public static final String MAIL = "mail";
             public static final String CONTACT_ID = "contact_id";
+            public static final String CALL_COMPLETED = "call_completed";
 
         }
     }

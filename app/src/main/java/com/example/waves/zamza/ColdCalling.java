@@ -10,6 +10,7 @@ public class ColdCalling {
     private String positionCalling;
     private String companyCalling;
     private String mailCalling;
+    private boolean callComplete;
 
 
     public String getNumberCalling() {
@@ -52,6 +53,13 @@ public class ColdCalling {
         this.mailCalling = mailCalling;
     }
 
+    public boolean isCallComplete() {
+        return callComplete;
+    }
+
+    public void setCallComplete(boolean callComplete) {
+        this.callComplete = callComplete;
+    }
 
     public ColdCalling (){
         this (UUID.randomUUID());
