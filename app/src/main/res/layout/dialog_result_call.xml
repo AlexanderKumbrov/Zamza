@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+<TextView android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/call_result"
+            android:textSize="20sp"
+            />
+
+    <Button
+            android:text="@string/successfully"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/successfully_button"/>
+    <Button
+            android:text="@string/not_successful"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/not_successful_button"/>
+    <Button
+            android:text="@string/make_appointment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/make_appointment_button"/>
+</LinearLayout>

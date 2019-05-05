@@ -16,4 +16,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="successfully">Successfully</string>
+    <string name="not_successful">not successful</string>
+    <string name="make_appointment">Make appointment</string>
+    <string name="call_result">Call result</string>
 </resources>

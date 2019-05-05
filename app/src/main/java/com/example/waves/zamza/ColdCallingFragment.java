@@ -1,5 +1,6 @@
 package com.example.waves.zamza;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -29,6 +30,7 @@ public class ColdCallingFragment extends Fragment {
     private EditText companyContact;
     private EditText mailContact;
     private Button callButton;
+    private Button makeAppointment;
 
     public static ColdCallingFragment newInstance (UUID callId){
         Bundle args = new Bundle();
@@ -55,7 +57,7 @@ public void onPause(){
 }
     @Override
     public View onCreateView(LayoutInflater inflater , final ViewGroup container , Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.activity_cold_calling, container, false);
+        final View view = inflater.inflate(R.layout.activity_cold_calling, container, false);
 getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         final Intent addContactBook = new Intent(Intent.ACTION_PICK , ContactsContract.Contacts.CONTENT_URI);
         nameContact = (EditText)view.findViewById(R.id.name_contact_edit);
@@ -147,10 +149,24 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL , Uri.parse("tel:" +mColdCalling.getNumberCalling()));
+                Intent intent = new Intent(Intent.ACTION_DIAL , Uri.parse("tel:" + mColdCalling.getNumberCalling()));
                 startActivity(intent);
-                CallDialogFragment callDialogFragment = new CallDialogFragment();
-                callDialogFragment.show(getFragmentManager(),"");
+                mColdCalling.setCallComplete(true);
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                View mView = getLayoutInflater().inflate(R.layout.dialog_result_call , null);
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+                makeAppointment = (Button)mView.findViewById(R.id.make_appointment_button);
+                makeAppointment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent1 = new Intent(getActivity() , MeetingsActivity.class);
+                        startActivity(intent1);
+                        dialog.dismiss();
+
+                    }
+                });
             }
         });
         contactBook = (FloatingActionButton)view.findViewById(R.id.contact_book);
