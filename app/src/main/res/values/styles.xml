@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundColor">#dfe4ea</item>
         <item name="textColor">#3d3d3d</item>
-        <item name="buttonColor">#27ae60</item>
+        <item name="buttonColor">#BFDBCB</item>
         <item name="toolBarColor">#00cec9</item>
         <item name="titleColor">#3d3d3d</item>
 
@@ -21,7 +21,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundColor">#05293b</item>
         <item name="textColor">#e7dfdf</item>
-        <item name="buttonColor">#27ae60</item>
+        <item name="buttonColor">#13552E</item>
         <item name="toolBarColor">#031c29</item>
         <item name="titleColor">#f7f1e3</item>
 

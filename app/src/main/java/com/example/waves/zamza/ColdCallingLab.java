@@ -92,6 +92,7 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + " =?" , new String[]{coldCalling
         values.put(Table.Cols.MAIL , coldCalling.getMailCalling());
         values.put(Table.Cols.CONTACT_ID , coldCalling.getContactId());
         values.put(Table.Cols.CALL_COMPLETED ,coldCalling.isCallComplete()? 1:0);
+        values.put(Table.Cols.RESULT_CALL , coldCalling.isResultCall() ? 1:0);
         return values;
     }
     private CursorWrapperZamza queryNumber (String whereClause , String[] whereArgs){

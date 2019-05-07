@@ -2,6 +2,7 @@ package com.example.waves.zamza;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -15,7 +16,6 @@ import android.widget.*;
 import java.util.List;
 
 public class ColdCallingListFragment extends Fragment {
-
     private RecyclerView mColdCallingRecyclerView;
     private ColdAdapter mAdapter;
 
@@ -102,16 +102,26 @@ updateUI();
         }
 
     }
-    private class ColdHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class CallHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ColdCalling mColdCalling;
         private TextView mNameNumber;
         private TextView mNumber;
         private CheckBox mCallComplete;
+        private Button callContacts;
 
 
-        public ColdHolder(View itemView) {
+        public CallHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
+
+            callContacts = (Button)itemView.findViewById(R.id.call_contact);
+            callContacts.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL , Uri.parse("tel:" + mColdCalling.getNumberCalling()));
+                    startActivity(intent);
+                }
+            });
 
             mNameNumber = (TextView)
                     itemView.findViewById(R.id.name);
@@ -122,7 +132,7 @@ updateUI();
 
         }
 
-        public void bindCold(ColdCalling coldCalling) {
+        public void bindCall(ColdCalling coldCalling) {
             mColdCalling = coldCalling;
             mNameNumber.setText(mColdCalling.getNameCalling());
             mNumber.setText(mColdCalling.getNumberCalling());
@@ -137,15 +147,15 @@ updateUI();
         }
     }
 
-    private class ColdAdapter extends RecyclerView.Adapter<ColdHolder> {
+    private class ColdAdapter extends RecyclerView.Adapter<CallHolder> {
 
         private List<ColdCalling> mColdCalling;
 
         @Override
-        public void onBindViewHolder(ColdHolder holder, int position) {
+        public void onBindViewHolder(CallHolder holder, int position) {
             ColdCalling coldCalling = mColdCalling.get(position);
-            holder.bindCold(coldCalling);
-            holder.bindCold(coldCalling);
+            holder.bindCall(coldCalling);
+            holder.bindCall(coldCalling);
         }
 
         public ColdAdapter(List<ColdCalling> coldCallings) {
@@ -153,11 +163,11 @@ updateUI();
         }
 
         @Override
-        public ColdHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public CallHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
 
             View view = layoutInflater.inflate(R.layout.list_item_cold_calling, parent, false);
-            return new ColdHolder(view);
+            return new CallHolder(view);
         }
 
 

@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -14,6 +16,7 @@ import android.text.TextWatcher;
 import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import java.util.UUID;
 
@@ -31,6 +34,9 @@ public class ColdCallingFragment extends Fragment {
     private EditText mailContact;
     private Button callButton;
     private Button makeAppointment;
+    private Button successfullyButton;
+    private Button notSuccessfulButton;
+    private RelativeLayout relativeLayout;
 
     public static ColdCallingFragment newInstance (UUID callId){
         Bundle args = new Bundle();
@@ -65,6 +71,7 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         positionContact = (EditText)view.findViewById(R.id.position_contact_edit);
         companyContact = (EditText)view.findViewById(R.id.company_contact_edit);
         mailContact = (EditText)view.findViewById(R.id.mail_contact_edit);
+        relativeLayout = (RelativeLayout)view.findViewById(R.id.cold_calling_rv);
         mailContact.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -151,6 +158,8 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL , Uri.parse("tel:" + mColdCalling.getNumberCalling()));
                 startActivity(intent);
+                    callButton.setText(R.string.the_call_is_made);
+                    callButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.call_is_made_call_button));
                 mColdCalling.setCallComplete(true);
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
                 View mView = getLayoutInflater().inflate(R.layout.dialog_result_call , null);
@@ -167,6 +176,24 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
                     }
                 });
+                successfullyButton = (Button)mView.findViewById(R.id.successfully_button);
+                successfullyButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mColdCalling.setResultCall(true);
+                        dialog.dismiss();
+                       relativeLayout.setBackgroundColor(Color.rgb(46, 204, 113));
+                    }
+                });
+                notSuccessfulButton = (Button)mView.findViewById(R.id.not_successful_button);
+                notSuccessfulButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mColdCalling.setResultCall(false);
+                        relativeLayout.setBackgroundColor(Color.rgb(231, 76, 60));
+                        dialog.dismiss();
+                    }
+                });
             }
         });
         contactBook = (FloatingActionButton)view.findViewById(R.id.contact_book);
@@ -176,6 +203,19 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 startActivityForResult(addContactBook , REQUEST_CONTACT);
             }
         });
+
+
+        if (mColdCalling.isCallComplete()){
+            callButton.setText(R.string.the_call_is_made);
+            callButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.call_is_made_call_button));
+            if (mColdCalling.isResultCall()){
+                relativeLayout.setBackgroundColor(Color.rgb(46, 204, 113));
+            }
+            else {
+                relativeLayout.setBackgroundColor(Color.rgb(231, 76, 60));
+            }
+
+        }
         nameContact.setText(mColdCalling.getNameCalling());
         numberContact.setText(mColdCalling.getNumberCalling());
         positionContact.setText(mColdCalling.getPositionCalling());

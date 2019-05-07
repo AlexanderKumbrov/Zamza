@@ -11,7 +11,15 @@ public class ColdCalling {
     private String companyCalling;
     private String mailCalling;
     private boolean callComplete;
+    private boolean resultCall;
 
+    public boolean isResultCall() {
+        return resultCall;
+    }
+
+    public void setResultCall(boolean resultCall) {
+        this.resultCall = resultCall;
+    }
 
     public String getNumberCalling() {
         return numberCalling;

@@ -18,7 +18,7 @@
 
     <Button android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:id="@+id/call"
+            android:id="@+id/call_contact"
             android:background="@color/colorPrimary"
             android:layout_toStartOf="@+id/call_complete_checkbox"
     />

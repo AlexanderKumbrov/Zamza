@@ -20,4 +20,5 @@
     <string name="not_successful">not successful</string>
     <string name="make_appointment">Make appointment</string>
     <string name="call_result">Call result</string>
+    <string name="the_call_is_made">The call is made</string>
 </resources>
