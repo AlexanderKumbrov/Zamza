@@ -3,18 +3,19 @@ package com.example.waves.zamza.database;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import com.example.waves.zamza.ColdCalling;
+import com.example.waves.zamza.Meeting;
 
 import java.util.UUID;
 
 import static com.example.waves.zamza.database.DbSchema.*;
 
-public class CursorWrapperZamza extends CursorWrapper {
+public class CursorWrapperContacts extends CursorWrapper {
     /**
      * Creates a cursor wrapper.
      *
      * @param cursor The underlying cursor to wrap.
      */
-    public CursorWrapperZamza(Cursor cursor) {
+    public CursorWrapperContacts(Cursor cursor) {
         super(cursor);
     }
     public ColdCalling getColdCalling (){

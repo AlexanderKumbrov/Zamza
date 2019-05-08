@@ -5,6 +5,7 @@ public class DbSchema {
         public static final String NAME = "zamza";
         public static final class Cols{
             public static final String UUID = "uuid";
+            public static final String UUID_MEETING ="uuid_meeting";
             public static final String NAME = "name";
             public static final String NUMBER = "number";
             public static final String POSITION = "position";

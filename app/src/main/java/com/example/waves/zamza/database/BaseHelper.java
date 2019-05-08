@@ -24,7 +24,8 @@ private static final String DATABASE_NAME = "zamzaBase.db";
                 +Table.Cols.CALL_COMPLETED +","
                 +Table.Cols.MAIL+" ,"
                 +Table.Cols.CONTACT_ID+","
-                +Table.Cols.RESULT_CALL+
+                +Table.Cols.RESULT_CALL+","
+                +Table.Cols.UUID_MEETING +
                 ")");
     }
 

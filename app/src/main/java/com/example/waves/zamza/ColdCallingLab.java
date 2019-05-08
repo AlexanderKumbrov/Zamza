@@ -5,7 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.waves.zamza.database.BaseHelper;
-import com.example.waves.zamza.database.CursorWrapperZamza;
+import com.example.waves.zamza.database.CursorWrapperContacts;
+import com.example.waves.zamza.database.CursorWrapperMeeting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class ColdCallingLab {
     public List<ColdCalling> getColdCalling(){
         List <ColdCalling> coldCallings = new ArrayList<>();
 
-        CursorWrapperZamza cursor  = queryNumber(null , null);
+        CursorWrapperContacts cursor  = queryNumber(null , null);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()){
@@ -52,9 +53,39 @@ public class ColdCallingLab {
         return coldCallings;
     }
 
+public List<Meeting> getMeeting(){
+       List<Meeting>meetings = new ArrayList<>();
+
+       CursorWrapperMeeting cursorWrapperMeeting = queryMeeting(null, null);
+       try {
+           cursorWrapperMeeting.moveToFirst();
+           while (!cursorWrapperMeeting.isAfterLast()) ;
+           {
+               meetings.add(cursorWrapperMeeting.getMeeting());
+               cursorWrapperMeeting.moveToNext();
+           }
+       }finally {
+           cursorWrapperMeeting.close();
+       }
+       return meetings;
+}
+
+
+public Meeting getMeeting (UUID idMeeting){
+       CursorWrapperMeeting cursorWrapperMeeting = queryMeeting(Table.Cols.UUID_MEETING + " =?",new String[]{idMeeting.toString()});
+       try {
+           if (cursorWrapperMeeting.getCount() == 0){
+               return null;
+           }
+           cursorWrapperMeeting.moveToFirst();
+           return cursorWrapperMeeting.getMeeting();
+       }finally {
+           cursorWrapperMeeting.close();
+       }
+}
 
     public ColdCalling getColdCalling (UUID idCold){
-        CursorWrapperZamza cursor = queryNumber(Table.Cols.UUID + " =?" ,
+        CursorWrapperContacts cursor = queryNumber(Table.Cols.UUID + " =?" ,
                 new String[]{idCold.toString()});
         try {
             if (cursor.getCount() == 0){
@@ -95,7 +126,7 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + " =?" , new String[]{coldCalling
         values.put(Table.Cols.RESULT_CALL , coldCalling.isResultCall() ? 1:0);
         return values;
     }
-    private CursorWrapperZamza queryNumber (String whereClause , String[] whereArgs){
+    private CursorWrapperContacts queryNumber (String whereClause , String[] whereArgs){
         Cursor cursor = mDataBase.query(
                 Table.NAME ,
                 null ,
@@ -104,7 +135,14 @@ mDataBase.delete(Table.NAME , Table.Cols.UUID + " =?" , new String[]{coldCalling
                 null,
                 null,
                 null);
-        return new CursorWrapperZamza(cursor);
+        return new CursorWrapperContacts(cursor);
+    }
+    private CursorWrapperMeeting queryMeeting (String whereClause , String[]whereArgs){
+       Cursor cursor = mDataBase.query(
+               Table.NAME,
+               null,whereClause,whereArgs,null,null,null
+       );
+       return new CursorWrapperMeeting(cursor);
     }
 
 }
