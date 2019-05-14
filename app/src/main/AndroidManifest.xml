@@ -13,6 +13,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".AddMeetingActivity">
+        </activity>
         <activity android:name=".ColdCallingActivity">
         </activity>
         <activity android:name=".SettingsActivity">

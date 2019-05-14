@@ -153,7 +153,6 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
         });
         relativeLayout = (RelativeLayout)view.findViewById(R.id.cold_calling_rv);
-
         callButton = (Button)view.findViewById(R.id.call_contact);
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,6 +206,7 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         });
 
 
+        if (mColdCalling.isCallComplete()) {
             if (mColdCalling.isResultCall()) {
                 callButton.setText(R.string.good_call);
                 callButton.setBackgroundResource(R.drawable.good_call);
@@ -215,6 +215,10 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 callButton.setBackgroundResource(R.drawable.not_a_good_call);
             }
 
+        }else {
+
+            callButton.setBackgroundResource(R.drawable.call_button);
+        }
 
         nameContact.setText(mColdCalling.getNameCalling());
         numberContact.setText(mColdCalling.getNumberCalling());

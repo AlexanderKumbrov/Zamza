@@ -3,7 +3,6 @@ package com.example.waves.zamza.database;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import com.example.waves.zamza.ColdCalling;
-import com.example.waves.zamza.Meeting;
 
 import java.util.UUID;
 
@@ -19,15 +18,15 @@ public class CursorWrapperContacts extends CursorWrapper {
         super(cursor);
     }
     public ColdCalling getColdCalling (){
-        String uuidString = getString(getColumnIndex(Table.Cols.UUID));
-        String name = getString(getColumnIndex(Table.Cols.NAME));
-        String number = getString(getColumnIndex(Table.Cols.NUMBER));
-        String position = getString(getColumnIndex(Table.Cols.POSITION));
-        String company = getString(getColumnIndex(Table.Cols.COMPANY));
-        String mail = getString(getColumnIndex(Table.Cols.MAIL));
-        long contact_id = getLong(getColumnIndex(Table.Cols.CONTACT_ID));
-        int call_completed = getInt(getColumnIndex(Table.Cols.CALL_COMPLETED));
-        int result_call = getInt(getColumnIndex(Table.Cols.RESULT_CALL));
+        String uuidString = getString(getColumnIndex(TableContacts.Cols.UUID));
+        String name = getString(getColumnIndex(TableContacts.Cols.NAME));
+        String number = getString(getColumnIndex(TableContacts.Cols.NUMBER));
+        String position = getString(getColumnIndex(TableContacts.Cols.POSITION));
+        String company = getString(getColumnIndex(TableContacts.Cols.COMPANY));
+        String mail = getString(getColumnIndex(TableContacts.Cols.MAIL));
+        long contact_id = getLong(getColumnIndex(TableContacts.Cols.CONTACT_ID));
+        int call_completed = getInt(getColumnIndex(TableContacts.Cols.CALL_COMPLETED));
+        int result_call = getInt(getColumnIndex(TableContacts.Cols.RESULT_CALL));
 
         ColdCalling coldCalling = new ColdCalling(UUID.fromString(uuidString));
         coldCalling.setNameCalling(name);
