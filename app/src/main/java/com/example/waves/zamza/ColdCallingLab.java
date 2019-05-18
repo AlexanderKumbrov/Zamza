@@ -35,6 +35,10 @@ public class ColdCallingLab {
         ContentValues values = getContentValues(calling);
         mDataBase.insert(TableContacts.NAME , null , values);
     }
+    public void addMeeting (Meeting meeting){
+       ContentValues values = getContentValuesMeeting(meeting);
+       mDataBase.insert(TableMeeting.NAME , null, values);
+    }
 
     public List<ColdCalling> getColdCalling(){
         List <ColdCalling> coldCallings = new ArrayList<>();
@@ -59,8 +63,7 @@ public List<Meeting> getMeeting(){
        CursorWrapperMeeting cursorWrapperMeeting = queryMeeting(null, null);
        try {
            cursorWrapperMeeting.moveToFirst();
-           while (!cursorWrapperMeeting.isAfterLast()) ;
-           {
+           while (!cursorWrapperMeeting.isAfterLast()) {
                meetings.add(cursorWrapperMeeting.getMeeting());
                cursorWrapperMeeting.moveToNext();
            }
@@ -126,6 +129,13 @@ mDataBase.delete(TableContacts.NAME , TableContacts.Cols.UUID + " =?" , new Stri
         values.put(TableContacts.Cols.RESULT_CALL , coldCalling.isResultCall() ? 1:0);
         return values;
     }
+    private static ContentValues getContentValuesMeeting (Meeting meeting){
+       ContentValues values = new ContentValues();
+       values.put(TableMeeting.Cols.UUID_MEETING , meeting.getUuidMeeting().toString());
+       values.put(TableMeeting.Cols.NAME_COMPANY , meeting.getNameCompanyMeeting());
+       values.put(TableMeeting.Cols.PLACE_MEETING , meeting.getPlaceMeeting());
+       return values;
+    }
     private CursorWrapperContacts queryNumber (String whereClause , String[] whereArgs){
         Cursor cursor = mDataBase.query(
                 TableContacts.NAME ,
@@ -139,8 +149,12 @@ mDataBase.delete(TableContacts.NAME , TableContacts.Cols.UUID + " =?" , new Stri
     }
     private CursorWrapperMeeting queryMeeting (String whereClause , String[]whereArgs){
        Cursor cursor = mDataBase.query(
-               TableContacts.NAME,
-               null,whereClause,whereArgs,null,null,null
+               TableMeeting.NAME,
+               null,whereClause,
+               whereArgs,
+               null,
+               null,
+               null
        );
        return new CursorWrapperMeeting(cursor);
     }

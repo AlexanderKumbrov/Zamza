@@ -10,6 +10,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.*;
+import android.widget.TextView;
+
+import java.lang.reflect.Method;
+import java.util.List;
 
 public class MeetingsFragment extends Fragment {
     private RecyclerView mRecyclerViewMeeting;
@@ -42,8 +46,9 @@ public class MeetingsFragment extends Fragment {
         addNewMeetingFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity() , AddMeetingActivity.class);
+                Meeting meeting = new Meeting();
+                ColdCallingLab.get(getActivity()).addMeeting(meeting);
+                Intent intent = AddMeetingActivity.newIntent(getActivity(),meeting.getUuidMeeting());
                 startActivity(intent);
             }
         });
@@ -57,12 +62,26 @@ public class MeetingsFragment extends Fragment {
         updateUI();
     }
     public void updateUI() {
+        ColdCallingLab coldCallingLab = ColdCallingLab.get(getActivity());
+        List<Meeting>meetings = coldCallingLab.getMeeting();
+
+        if (mMeetingAdapter == null){
+            mMeetingAdapter = new MeetingAdapter(meetings);
+            mRecyclerViewMeeting.setAdapter(mMeetingAdapter);
+        }else {
+            mMeetingAdapter.setMeeting(meetings);
+            mMeetingAdapter.notifyDataSetChanged();
+        }
 
     }
     private class MeetingHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
+private Meeting mMeeting;
+private TextView nameMeeting;
+private TextView placeMeeting;
         public MeetingHolder(@NonNull View itemView) {
             super(itemView);
+nameMeeting = (TextView)itemView.findViewById(R.id.name_meeting);
+placeMeeting = (TextView)itemView.findViewById(R.id.place_meeting);
 
         }
 
@@ -71,23 +90,38 @@ public class MeetingsFragment extends Fragment {
         public void onClick(View v) {
 
         }
+        public void bindMeet (Meeting meeting){
+            mMeeting = meeting;
+            nameMeeting.setText(meeting.getNameCompanyMeeting());
+            placeMeeting.setText(meeting.getPlaceMeeting());
+        }
     }
     private class MeetingAdapter extends RecyclerView.Adapter<MeetingHolder>{
+        private List<Meeting>mMeetings;
+
+        public MeetingAdapter (List<Meeting>meetings){
+            mMeetings = meetings;
+        }
 
         @NonNull
         @Override
         public MeetingHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-            return null;
+            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+            View view = layoutInflater.inflate(R.layout.item_meeting , viewGroup , false);
+            return new MeetingHolder(view);
         }
-
+public void setMeeting (List<Meeting>meeting){
+            mMeetings = meeting;
+}
         @Override
         public void onBindViewHolder(@NonNull MeetingHolder meetingHolder, int i) {
-
+        Meeting meeting = mMeetings.get(i);
+        meetingHolder.bindMeet(meeting);
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return mMeetings.size();
         }
     }
 }

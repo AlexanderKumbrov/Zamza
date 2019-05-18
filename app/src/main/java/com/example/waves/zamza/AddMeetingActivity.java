@@ -10,7 +10,7 @@ import android.os.Bundle;
 import java.util.UUID;
 
 public class AddMeetingActivity extends AppCompatActivity {
-    private Meeting meeting;
+
     private static final String EXTRA_CALL_ID ="com.example.waves.zamza.id";
     public static Intent newIntent (Context context , UUID meetingId){
         Intent intent = new Intent(context , AddMeetingActivity.class);
