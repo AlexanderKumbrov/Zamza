@@ -12,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.*;
 import android.widget.TextView;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 public class MeetingsFragment extends Fragment {
@@ -80,15 +79,14 @@ private TextView nameMeeting;
 private TextView placeMeeting;
         public MeetingHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
 nameMeeting = (TextView)itemView.findViewById(R.id.name_meeting);
 placeMeeting = (TextView)itemView.findViewById(R.id.place_meeting);
 
         }
 
-
         @Override
         public void onClick(View v) {
-
         }
         public void bindMeet (Meeting meeting){
             mMeeting = meeting;

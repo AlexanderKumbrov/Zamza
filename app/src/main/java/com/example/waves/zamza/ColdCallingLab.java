@@ -75,7 +75,8 @@ public List<Meeting> getMeeting(){
 
 
 public Meeting getMeeting (UUID idMeeting){
-       CursorWrapperMeeting cursorWrapperMeeting = queryMeeting(TableMeeting.Cols.UUID_MEETING + " =?",new String[]{idMeeting.toString()});
+       CursorWrapperMeeting cursorWrapperMeeting = queryMeeting(TableMeeting.Cols.UUID_MEETING + " =?"
+               ,new String[]{idMeeting.toString()});
        try {
            if (cursorWrapperMeeting.getCount() == 0){
                return null;
@@ -109,7 +110,13 @@ public Meeting getMeeting (UUID idMeeting){
         mDataBase.update(TableContacts.NAME , values , TableContacts.Cols.UUID + " =? "
                 , new String[]{uuidString});
     }
+public void updateMeeting (Meeting meeting){
+       String uuid = meeting.getUuidMeeting().toString();
+       ContentValues values = getContentValuesMeeting(meeting);
 
+       mDataBase.update(TableMeeting.NAME , values , TableMeeting.Cols.UUID_MEETING + "=? "
+       , new    String[]{uuid});
+}
 
     public void deleteContact(ColdCalling coldCalling){
 mDataBase.delete(TableContacts.NAME , TableContacts.Cols.UUID + " =?" , new String[]{coldCalling.getUuidCalling().toString()});
@@ -150,7 +157,8 @@ mDataBase.delete(TableContacts.NAME , TableContacts.Cols.UUID + " =?" , new Stri
     private CursorWrapperMeeting queryMeeting (String whereClause , String[]whereArgs){
        Cursor cursor = mDataBase.query(
                TableMeeting.NAME,
-               null,whereClause,
+               null,
+               whereClause,
                whereArgs,
                null,
                null,

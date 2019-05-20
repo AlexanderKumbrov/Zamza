@@ -13,12 +13,22 @@ android:orientation="vertical">
 
     <EditText android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:id="@+id/name_meeting"
+              android:id="@+id/name_meeting_edit_text"
  />
 
     <EditText android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:id="@+id/place_meeting"
+              android:id="@+id/place_meeting_edit_text"
 />
+
 </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/ic_plus"
+            android:id="@+id/map_button"/>
 </RelativeLayout>

@@ -24,4 +24,5 @@
     <string name="good_call">Good call</string>
     <string name="not_good_call">Not a gocod call</string>
     <string name="call">Call</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

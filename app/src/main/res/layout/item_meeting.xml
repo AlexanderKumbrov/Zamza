@@ -11,10 +11,14 @@
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                         android:id="@+id/name_meeting"
+                      android:layout_centerInParent="true"
+                      android:textSize="80dp"
+                      android:text="name"
             />
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:id="@+id/place_meeting"
+                      android:text="place"
             />
 
         </RelativeLayout>
