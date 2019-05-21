@@ -22,7 +22,10 @@
     <string name="call_result">Call result</string>
     <string name="the_call_is_made">The call is made</string>
     <string name="good_call">Good call</string>
-    <string name="not_good_call">Not a gocod call</string>
+    <string name="not_good_call">Not a good call</string>
     <string name="call">Call</string>
     <string name="title_activity_maps">Map</string>
+    <string name="delete">Delete</string>
+    <string name="meeting_through">Meeting through :</string>
+    <string name="show_in_the_map">Show in the map</string>
 </resources>

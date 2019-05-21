@@ -121,6 +121,10 @@ public void updateMeeting (Meeting meeting){
     public void deleteContact(ColdCalling coldCalling){
 mDataBase.delete(TableContacts.NAME , TableContacts.Cols.UUID + " =?" , new String[]{coldCalling.getUuidCalling().toString()});
     }
+    public void deleteMeeting (Meeting meeting){
+       mDataBase.delete(TableMeeting.NAME , TableMeeting.Cols.UUID_MEETING + " =?"
+       , new String[]{meeting.getUuidMeeting().toString()});
+    }
 
 
     private static ContentValues getContentValues (ColdCalling coldCalling){

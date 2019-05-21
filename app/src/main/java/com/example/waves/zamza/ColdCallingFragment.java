@@ -169,9 +169,11 @@ getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 makeAppointment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent1 = new Intent(getActivity() , MeetingsActivity.class);
-                        startActivity(intent1);
-                        dialog.dismiss();
+                        Meeting meeting = new Meeting();
+                        ColdCallingLab.get(getActivity()).addMeeting(meeting);
+                        Intent intent = AddMeetingActivity.newIntent(getActivity(),meeting.getUuidMeeting());
+                        startActivity(intent);
+                   makeAppointment.setEnabled(false);
 
                     }
                 });

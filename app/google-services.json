@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "71891376780",
+    "firebase_url": "https://zamza-1a1a4.firebaseio.com",
+    "project_id": "zamza-1a1a4",
+    "storage_bucket": "zamza-1a1a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71891376780:android:93582769d8f7820c",
+        "android_client_info": {
+          "package_name": "com.example.waves.zamza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71891376780-c4ckjek8d0r3qn9km88srl298na9qp6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvAmuLuj2sX-m2tV7Q82uTSZ4wmS80srw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71891376780-c4ckjek8d0r3qn9km88srl298na9qp6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.*;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -42,6 +43,8 @@ public class MeetingsFragment extends Fragment {
         mRecyclerViewMeeting = (RecyclerView)view.findViewById(R.id.meeting_rv);
         mRecyclerViewMeeting.setLayoutManager(new LinearLayoutManager(getActivity()));
         addNewMeetingFAB = (FloatingActionButton)view.findViewById(R.id.add_meeting);
+
+
         addNewMeetingFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,13 +80,23 @@ public class MeetingsFragment extends Fragment {
 private Meeting mMeeting;
 private TextView nameMeeting;
 private TextView placeMeeting;
-        public MeetingHolder(@NonNull View itemView) {
+        public MeetingHolder(@NonNull final View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
 nameMeeting = (TextView)itemView.findViewById(R.id.name_meeting);
 placeMeeting = (TextView)itemView.findViewById(R.id.place_meeting);
+            Button deleteButton = (Button) itemView.findViewById(R.id.delete_meeting);
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+mMeetingAdapter.delete(getAdapterPosition());
+updateUI();
+
+                }
+            });
 
         }
+
 
         @Override
         public void onClick(View v) {
@@ -108,6 +121,7 @@ placeMeeting = (TextView)itemView.findViewById(R.id.place_meeting);
             View view = layoutInflater.inflate(R.layout.item_meeting , viewGroup , false);
             return new MeetingHolder(view);
         }
+
 public void setMeeting (List<Meeting>meeting){
             mMeetings = meeting;
 }
@@ -121,5 +135,14 @@ public void setMeeting (List<Meeting>meeting){
         public int getItemCount() {
             return mMeetings.size();
         }
+
+        public void delete(int position){
+            ColdCallingLab coldCallingLab = ColdCallingLab.get(getActivity());
+            Meeting meeting = mMeetings.get(position);
+            coldCallingLab.deleteMeeting(meeting);
+            mMeetingAdapter.notifyItemRemoved(position);
+            mMeetingAdapter.notifyItemRangeChanged(position , coldCallingLab.getMeeting().size());
+        }
+
     }
 }
