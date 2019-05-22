@@ -28,4 +28,7 @@
     <string name="delete">Delete</string>
     <string name="meeting_through">Meeting through :</string>
     <string name="show_in_the_map">Show in the map</string>
+    <string name="name_company">Name company</string>
+    <string name="place">Place</string>
+    <string name="date_meeting">Date Meeting</string>
 </resources>

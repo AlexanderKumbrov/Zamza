@@ -5,6 +5,7 @@ import android.database.CursorWrapper;
 import com.example.waves.zamza.Meeting;
 import com.example.waves.zamza.database.DbSchema.TableContacts;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class CursorWrapperMeeting extends CursorWrapper {
@@ -20,13 +21,14 @@ public class CursorWrapperMeeting extends CursorWrapper {
     String uuidMeetingSting = getString(getColumnIndex(DbSchema.TableMeeting.Cols.UUID_MEETING));
     String nameCompany = getString(getColumnIndex(DbSchema.TableMeeting.Cols.NAME_COMPANY));
     String placeMeeting = getString(getColumnIndex(DbSchema.TableMeeting.Cols.PLACE_MEETING));
-
+    long date = getLong(getColumnIndex(DbSchema.TableMeeting.Cols.DATE));
 
 
 
     Meeting meeting = new Meeting(UUID.fromString(uuidMeetingSting));
     meeting.setNameCompanyMeeting(nameCompany);
     meeting.setPlaceMeeting(placeMeeting);
+    meeting.setmDate(new Date(date));
 
     return meeting;
 

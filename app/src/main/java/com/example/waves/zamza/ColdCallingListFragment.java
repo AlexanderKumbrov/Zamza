@@ -1,5 +1,6 @@
 package com.example.waves.zamza;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,10 +19,14 @@ import java.util.List;
 public class ColdCallingListFragment extends Fragment {
     private RecyclerView mColdCallingRecyclerView;
     private ColdAdapter mAdapter;
+    private Callbacks mCallbacks;
 
 
     private FloatingActionButton addContact;
 
+    public interface Callbacks{
+        void onCallSelected(ColdCalling coldCalling);
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +38,16 @@ public class ColdCallingListFragment extends Fragment {
         menuInflater.inflate(R.menu.menu_main_tool_bar , menu);
     }
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        super.onAttach(context);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mCallbacks = (Callbacks)activity;
 
     }
-
+@Override
+public void onDetach (){
+        super.onDetach();
+        mCallbacks = null;
+}
 
     @Nullable
     @Override
@@ -53,8 +62,7 @@ public class ColdCallingListFragment extends Fragment {
             public void onClick(View view) {
                 ColdCalling coldCalling = new ColdCalling();
                 ColdCallingLab.get(getActivity()).addContact(coldCalling);
-                Intent intent =  ColdCallingActivity.newIntent(getActivity(),coldCalling.getUuidCalling());
-                startActivity(intent);
+               mCallbacks.onCallSelected(coldCalling);
             }
         });
 
@@ -142,8 +150,7 @@ updateUI();
 
         @Override
         public void onClick(View view) {
-            Intent intent = ColdCallingActivity.newIntentView(getActivity(),mColdCalling.getUuidCalling());
-            startActivity(intent);
+            mCallbacks.onCallSelected(mColdCalling);
         }
     }
 

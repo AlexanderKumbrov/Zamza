@@ -80,10 +80,20 @@ public class MeetingsFragment extends Fragment {
 private Meeting mMeeting;
 private TextView nameMeeting;
 private TextView placeMeeting;
+private Button showMap;
+
         public MeetingHolder(@NonNull final View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
 nameMeeting = (TextView)itemView.findViewById(R.id.name_meeting);
+showMap = (Button)itemView.findViewById(R.id.show_map);
+showMap.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity() , MapsActivity.class);
+        startActivity(intent);
+    }
+});
 placeMeeting = (TextView)itemView.findViewById(R.id.place_meeting);
             Button deleteButton = (Button) itemView.findViewById(R.id.delete_meeting);
             deleteButton.setOnClickListener(new View.OnClickListener() {
