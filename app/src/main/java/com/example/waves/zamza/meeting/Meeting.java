@@ -1,4 +1,4 @@
-package com.example.waves.zamza;
+package com.example.waves.zamza.meeting;
 
 import java.util.Date;
 import java.util.UUID;

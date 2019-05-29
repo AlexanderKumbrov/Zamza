@@ -2,8 +2,7 @@ package com.example.waves.zamza.database;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
-import com.example.waves.zamza.Meeting;
-import com.example.waves.zamza.database.DbSchema.TableContacts;
+import com.example.waves.zamza.meeting.Meeting;
 
 import java.util.Date;
 import java.util.UUID;

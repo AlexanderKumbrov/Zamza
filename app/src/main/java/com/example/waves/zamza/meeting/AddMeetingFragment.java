@@ -1,4 +1,4 @@
-package com.example.waves.zamza;
+package com.example.waves.zamza.meeting;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,12 +10,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import com.example.waves.zamza.*;
+import com.example.waves.zamza.date.DateActivity;
+import com.example.waves.zamza.date.DateFragment;
+import com.example.waves.zamza.date.TimeActivity;
+import com.example.waves.zamza.date.TimeFragment;
 
 import java.util.Date;
 import java.util.UUID;

@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import com.example.waves.zamza.coldCalling.ColdCallingListActivity;
+import com.example.waves.zamza.meeting.MeetingsActivity;
 
 
 public class MainMenu extends AppCompatActivity {
@@ -63,7 +65,7 @@ return true;
         startActivity(debt);
     }
     public void meetings(View view){
-        Intent meetings = new Intent(this ,MeetingsActivity.class);
+        Intent meetings = new Intent(this , MeetingsActivity.class);
         startActivity(meetings);
     }
     public void sales_training(View view){

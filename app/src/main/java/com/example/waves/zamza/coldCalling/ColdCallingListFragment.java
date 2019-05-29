@@ -1,7 +1,6 @@
-package com.example.waves.zamza;
+package com.example.waves.zamza.coldCalling;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +12,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.*;
 import android.widget.*;
+import com.example.waves.zamza.ColdCallingLab;
+import com.example.waves.zamza.R;
 
 import java.util.List;
 

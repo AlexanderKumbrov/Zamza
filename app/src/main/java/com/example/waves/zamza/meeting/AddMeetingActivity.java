@@ -1,8 +1,9 @@
-package com.example.waves.zamza;
+package com.example.waves.zamza.meeting;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import com.example.waves.zamza.CreateFragment;
 
 import java.util.List;
 import java.util.UUID;

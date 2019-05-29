@@ -1,4 +1,4 @@
-package com.example.waves.zamza;
+package com.example.waves.zamza.coldCalling;
 
 import java.util.UUID;
 

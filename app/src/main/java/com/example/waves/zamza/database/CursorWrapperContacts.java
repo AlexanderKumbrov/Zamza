@@ -2,7 +2,7 @@ package com.example.waves.zamza.database;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
-import com.example.waves.zamza.ColdCalling;
+import com.example.waves.zamza.coldCalling.ColdCalling;
 
 import java.util.UUID;
 

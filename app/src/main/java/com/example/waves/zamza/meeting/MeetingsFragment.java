@@ -1,4 +1,4 @@
-package com.example.waves.zamza;
+package com.example.waves.zamza.meeting;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.*;
 import android.widget.Button;
 import android.widget.TextView;
+import com.example.waves.zamza.ColdCallingLab;
+import com.example.waves.zamza.MapsActivity;
+import com.example.waves.zamza.R;
 
 import java.util.List;
 

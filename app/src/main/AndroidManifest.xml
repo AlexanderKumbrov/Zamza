@@ -39,21 +39,21 @@
                 android:name=".MapsActivity"
                 android:label="@string/title_activity_maps">
         </activity>
-        <activity android:name=".AddMeetingActivity">
+        <activity android:name=".meeting.AddMeetingActivity">
         </activity>
-        <activity android:name=".ColdCallingActivity">
+        <activity android:name=".coldCalling.ColdCallingActivity">
         </activity>
         <activity android:name=".SettingsActivity">
         </activity>
         <activity android:name=".SalesTraining">
         </activity>
-        <activity android:name=".MeetingsActivity">
+        <activity android:name=".meeting.MeetingsActivity">
         </activity>
         <activity android:name=".DebtRepaymentTermActivity">
         </activity>
-        <activity android:name=".DateActivity">
+        <activity android:name=".date.DateActivity">
         </activity>
-        <activity android:name=".TimeActivity">
+        <activity android:name=".date.TimeActivity">
         </activity>
         <activity
                 android:name=".MainMenu"
@@ -67,7 +67,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".ColdCallingListActivity"
+                android:name=".coldCalling.ColdCallingListActivity"
                 android:parentActivityName=".MainMenu"/>
     </application>
 

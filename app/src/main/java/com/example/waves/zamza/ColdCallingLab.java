@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import com.example.waves.zamza.coldCalling.ColdCalling;
+import com.example.waves.zamza.meeting.Meeting;
 import com.example.waves.zamza.database.BaseHelper;
 import com.example.waves.zamza.database.CursorWrapperContacts;
 import com.example.waves.zamza.database.CursorWrapperMeeting;

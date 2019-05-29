@@ -1,4 +1,4 @@
-package com.example.waves.zamza;
+package com.example.waves.zamza.coldCalling;
 
 import android.Manifest;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import com.example.waves.zamza.ColdCallingLab;
+import com.example.waves.zamza.R;
 
 import java.util.List;
 import java.util.UUID;

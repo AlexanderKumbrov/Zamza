@@ -1,8 +1,7 @@
-package com.example.waves.zamza;
+package com.example.waves.zamza.meeting;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import com.example.waves.zamza.CreateFragment;
 
 public class MeetingsActivity extends CreateFragment {
 

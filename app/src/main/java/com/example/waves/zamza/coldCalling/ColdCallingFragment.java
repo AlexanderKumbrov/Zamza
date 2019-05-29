@@ -1,11 +1,9 @@
-package com.example.waves.zamza;
+package com.example.waves.zamza.coldCalling;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -17,6 +15,10 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import com.example.waves.zamza.meeting.AddMeetingActivity;
+import com.example.waves.zamza.ColdCallingLab;
+import com.example.waves.zamza.meeting.Meeting;
+import com.example.waves.zamza.R;
 
 import java.util.UUID;
 
