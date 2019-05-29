@@ -14,6 +14,7 @@ public class Meeting {
     }
     public Meeting(UUID id){
         uuidMeeting = id;
+        mDate = new Date();
 
     }
     public UUID getUuidMeeting() {

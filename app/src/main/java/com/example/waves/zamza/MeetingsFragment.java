@@ -81,12 +81,16 @@ private Meeting mMeeting;
 private TextView nameMeeting;
 private TextView placeMeeting;
 private Button showMap;
+private TextView meetingDate;
 
         public MeetingHolder(@NonNull final View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
+
 nameMeeting = (TextView)itemView.findViewById(R.id.name_meeting);
 showMap = (Button)itemView.findViewById(R.id.show_map);
+meetingDate = (TextView)itemView.findViewById(R.id.meeting_through);
+
 showMap.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -115,6 +119,8 @@ updateUI();
             mMeeting = meeting;
             nameMeeting.setText(meeting.getNameCompanyMeeting());
             placeMeeting.setText(meeting.getPlaceMeeting());
+            meetingDate.setText(meeting.getmDate().toString());
+
         }
     }
     private class MeetingAdapter extends RecyclerView.Adapter<MeetingHolder>{

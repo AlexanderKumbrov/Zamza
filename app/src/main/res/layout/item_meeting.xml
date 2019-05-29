@@ -20,12 +20,14 @@
                       android:id="@+id/place_meeting"
                       android:text="place"
             android:layout_below="@+id/name_meeting"/>
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-            android:text="@string/meeting_through"
-            android:layout_below="@+id/place_meeting"
-            android:textSize="30sp"
-            android:id="@+id/meeting_through"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/meeting_through"
+                    android:layout_below="@+id/place_meeting"
+                    android:textSize="30sp"
+                    android:id="@+id/meeting_through"/>
 
             <Button android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

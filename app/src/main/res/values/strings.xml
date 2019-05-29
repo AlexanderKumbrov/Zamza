@@ -31,4 +31,7 @@
     <string name="name_company">Name company</string>
     <string name="place">Place</string>
     <string name="date_meeting">Date Meeting</string>
+    <string name="time_meeting">Time Meeting</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>
