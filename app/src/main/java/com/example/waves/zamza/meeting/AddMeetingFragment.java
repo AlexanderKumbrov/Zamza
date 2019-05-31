@@ -16,11 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import com.example.waves.zamza.*;
-import com.example.waves.zamza.date.DateActivity;
-import com.example.waves.zamza.date.DateFragment;
-import com.example.waves.zamza.date.TimeActivity;
-import com.example.waves.zamza.date.TimeFragment;
+import com.example.waves.zamza.date.*;
 
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -43,6 +41,8 @@ public class AddMeetingFragment extends Fragment {
     public static final int ACTIVITY_REQUEST_DATE = 3;
     public static final int ACTIVITY_REQUEST_TIME = 4;
     public static final String TAG = "AddMeetingFragment";
+    private static final int DATE_FORMAT = DateFormat.FULL;
+    private static final int TIME_FORMAT = DateFormat.SHORT;
 
 
     public static AddMeetingFragment newInstance(UUID callId) {
@@ -169,8 +169,8 @@ public class AddMeetingFragment extends Fragment {
             }
 
             mMeeting.setmDate(date);
-            dateMeetingButton.setText(date.toString());
-            timeMeetingButton.setText(date.toString());
+            dateMeetingButton.setText(DateFormatterKt.formatDateAsString(DATE_FORMAT , date));
+            timeMeetingButton.setText(DateFormatterKt.formatDateAsTimeString(TIME_FORMAT ,date));
         }
     }
 
