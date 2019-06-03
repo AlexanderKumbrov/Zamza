@@ -15,13 +15,18 @@ import android.widget.TextView;
 import com.example.waves.zamza.ColdCallingLab;
 import com.example.waves.zamza.MapsActivity;
 import com.example.waves.zamza.R;
+import com.example.waves.zamza.date.DateFormatterKt;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MeetingsFragment extends Fragment {
     private RecyclerView mRecyclerViewMeeting;
     private MeetingAdapter mMeetingAdapter;
     private FloatingActionButton addNewMeetingFAB;
+    private static final int DATE_FORMAT = DateFormat.FULL;
+    private static final int TIME_FORMAT = DateFormat.SHORT;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,6 +90,7 @@ private TextView nameMeeting;
 private TextView placeMeeting;
 private Button showMap;
 private TextView meetingDate;
+private TextView meetingTime;
 
         public MeetingHolder(@NonNull final View itemView) {
             super(itemView);
@@ -92,7 +98,8 @@ private TextView meetingDate;
 
 nameMeeting = (TextView)itemView.findViewById(R.id.name_meeting);
 showMap = (Button)itemView.findViewById(R.id.show_map);
-meetingDate = (TextView)itemView.findViewById(R.id.meeting_through);
+meetingDate = (TextView)itemView.findViewById(R.id.meeting_date);
+meetingTime = (TextView)itemView.findViewById(R.id.meeting_time);
 
 showMap.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -122,7 +129,8 @@ updateUI();
             mMeeting = meeting;
             nameMeeting.setText(meeting.getNameCompanyMeeting());
             placeMeeting.setText(meeting.getPlaceMeeting());
-            meetingDate.setText(meeting.getmDate().toString());
+            meetingDate.setText(DateFormatterKt.formatDateAsString(DATE_FORMAT , mMeeting.getmDate()));
+            meetingTime.setText(DateFormatterKt.formatDateAsTimeString(TIME_FORMAT , mMeeting.getmDate()));
 
         }
     }

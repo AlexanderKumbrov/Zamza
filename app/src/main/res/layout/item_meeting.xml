@@ -12,22 +12,29 @@
                       android:layout_height="wrap_content"
                         android:id="@+id/name_meeting"
                       android:textSize="40sp"
-                      android:text="name"/>
+                      android:text="@string/name"/>
 
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:textSize="40sp"
                       android:id="@+id/place_meeting"
-                      android:text="place"
+                      android:text="@string/place"
             android:layout_below="@+id/name_meeting"/>
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/meeting_through"
+                    android:text="@string/date"
                     android:layout_below="@+id/place_meeting"
                     android:textSize="30sp"
-                    android:id="@+id/meeting_through"/>
+                    android:id="@+id/meeting_date"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time"
+                    android:layout_below="@+id/meeting_date"
+                    android:textSize="30sp"
+                    android:id="@+id/meeting_time"/>
 
             <Button android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -39,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/show_map"
                     android:text="@string/show_in_the_map"
-                    android:layout_below="@+id/meeting_through"
+                    android:layout_below="@+id/meeting_date"
                     android:layout_marginTop="75dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"

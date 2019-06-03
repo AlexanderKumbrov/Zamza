@@ -34,4 +34,7 @@
     <string name="time_meeting">Time Meeting</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="date">Date</string>
+    <string name="name">name</string>
+    <string name="time">Time</string>
 </resources>

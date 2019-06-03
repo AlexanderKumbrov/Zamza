@@ -49,11 +49,11 @@
         </activity>
         <activity android:name=".meeting.MeetingsActivity">
         </activity>
-        <activity android:name=".DebtRepaymentTermActivity">
-        </activity>
         <activity android:name=".date.DateActivity">
         </activity>
         <activity android:name=".date.TimeActivity">
+        </activity>
+        <activity android:name=".DebtRepaymentTermActivity">
         </activity>
         <activity
                 android:name=".MainMenu"
