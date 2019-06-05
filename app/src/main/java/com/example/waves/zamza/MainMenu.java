@@ -2,9 +2,12 @@ package com.example.waves.zamza;
 
 import android.content.*;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,7 +30,6 @@ public class MainMenu extends AppCompatActivity {
         }else {
             setTheme(R.style.AppTheme);
         }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

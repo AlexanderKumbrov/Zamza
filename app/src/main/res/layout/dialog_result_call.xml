@@ -16,15 +16,18 @@
             android:text="@string/successfully"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/successfully_button"/>
     <Button
             android:text="@string/not_successful"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/not_successful_button"/>
     <Button
             android:text="@string/make_appointment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/make_appointment_button"/>
 </LinearLayout>
