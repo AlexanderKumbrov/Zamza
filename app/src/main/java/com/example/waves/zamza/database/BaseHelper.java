@@ -33,7 +33,9 @@ private static final String DATABASE_NAME = "zamzaBase.db";
                 +  TableMeeting.Cols.UUID_MEETING +","
                         + TableMeeting.Cols.NAME_COMPANY +","
                         + TableMeeting.Cols.DATE +","
-                        + TableMeeting.Cols.PLACE_MEETING +")"
+                        + TableMeeting.Cols.PLACE_MEETING +","
+                        + TableMeeting.Cols.IMPORTANCE+
+                        ")"
                 );
     }
 

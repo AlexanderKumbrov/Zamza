@@ -7,7 +7,8 @@ public class Meeting {
     private UUID uuidMeeting;
     private Date mDate;
     private String nameCompanyMeeting;
-    private String PlaceMeeting;
+    private String placeMeeting;
+    private String importance ;
 
     public Meeting(){
         this (UUID.randomUUID());
@@ -17,6 +18,15 @@ public class Meeting {
         mDate = new Date();
 
     }
+
+    public String getImportance() {
+        return importance;
+    }
+
+    public void setImportance(String importance) {
+        this.importance = importance;
+    }
+
     public UUID getUuidMeeting() {
         return uuidMeeting;
     }
@@ -34,7 +44,7 @@ public class Meeting {
     }
 
     public String getPlaceMeeting() {
-        return PlaceMeeting;
+        return placeMeeting;
     }
 
     public Date getmDate() {
@@ -46,7 +56,7 @@ public class Meeting {
     }
 
     public void setPlaceMeeting(String placeMeeting) {
-        PlaceMeeting = placeMeeting;
+        this.placeMeeting = placeMeeting;
     }
 
 }

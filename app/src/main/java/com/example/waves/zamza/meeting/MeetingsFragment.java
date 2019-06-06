@@ -91,6 +91,7 @@ private TextView placeMeeting;
 private Button showMap;
 private TextView meetingDate;
 private TextView meetingTime;
+private TextView importance;
 
         public MeetingHolder(@NonNull final View itemView) {
             super(itemView);
@@ -100,6 +101,8 @@ nameMeeting = (TextView)itemView.findViewById(R.id.name_meeting);
 showMap = (Button)itemView.findViewById(R.id.show_map);
 meetingDate = (TextView)itemView.findViewById(R.id.meeting_date);
 meetingTime = (TextView)itemView.findViewById(R.id.meeting_time);
+importance = (TextView)itemView.findViewById(R.id.importance_show);
+
 
 showMap.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -131,6 +134,7 @@ updateUI();
             placeMeeting.setText(meeting.getPlaceMeeting());
             meetingDate.setText(DateFormatterKt.formatDateAsString(DATE_FORMAT , mMeeting.getmDate()));
             meetingTime.setText(DateFormatterKt.formatDateAsTimeString(TIME_FORMAT , mMeeting.getmDate()));
+            importance.setText(meeting.getImportance());
 
         }
     }

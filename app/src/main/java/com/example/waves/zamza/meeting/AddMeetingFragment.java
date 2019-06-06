@@ -13,8 +13,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import com.example.waves.zamza.*;
 import com.example.waves.zamza.date.*;
 
@@ -30,6 +32,7 @@ public class AddMeetingFragment extends Fragment {
     private FloatingActionButton mapButton;
     private Button dateMeetingButton;
     private Button timeMeetingButton;
+    private Spinner importanceSpinner;
 
     private static final String ARG_MEET_ID = "meeting_Id";
     public static final String EXTRA_DATE = "date";
@@ -75,6 +78,20 @@ public class AddMeetingFragment extends Fragment {
         nameMeeting = (EditText) view.findViewById(R.id.name_meeting_edit_text);
         placeMeeting = (EditText) view.findViewById(R.id.place_meeting_edit_text);
         mapButton = (FloatingActionButton) view.findViewById(R.id.map_button);
+        importanceSpinner = (Spinner)view.findViewById(R.id.importance_meeting);
+        importanceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String s  = String.valueOf(importanceSpinner.getSelectedItem());
+                mMeeting.setImportance(s);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         dateMeetingButton = (Button)view.findViewById(R.id.date_meeting);
         dateMeetingButton.setOnClickListener(new View.OnClickListener() {

@@ -22,6 +22,7 @@ public class DbSchema {
             public static final String NAME_COMPANY = "company";
             public static final String PLACE_MEETING = "place_meeting";
             public static final String DATE = "date";
+            public static final String IMPORTANCE = "importance";
         }
     }
 

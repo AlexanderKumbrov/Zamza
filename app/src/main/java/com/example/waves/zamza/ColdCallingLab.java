@@ -148,6 +148,7 @@ mDataBase.delete(TableContacts.NAME , TableContacts.Cols.UUID + " =?" , new Stri
        values.put(TableMeeting.Cols.NAME_COMPANY , meeting.getNameCompanyMeeting());
        values.put(TableMeeting.Cols.PLACE_MEETING , meeting.getPlaceMeeting());
        values.put(TableMeeting.Cols.DATE , meeting.getmDate().getTime());
+       values.put(TableMeeting.Cols.IMPORTANCE , meeting.getImportance());
        return values;
     }
     private CursorWrapperContacts queryNumber (String whereClause , String[] whereArgs){

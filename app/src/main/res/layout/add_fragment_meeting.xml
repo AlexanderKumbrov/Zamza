@@ -49,6 +49,15 @@ android:orientation="vertical">
             android:layout_gravity="center"
             android:layout_marginTop="30dp"/>
 
+    <Spinner android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/importance_meeting"
+             android:layout_gravity="center"
+             android:layout_margin="20dp"
+             android:entries="@array/importance_meeting_string"
+
+    />
+
 </LinearLayout>
     <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"

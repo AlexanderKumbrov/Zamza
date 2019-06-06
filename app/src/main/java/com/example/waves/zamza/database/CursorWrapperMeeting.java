@@ -21,6 +21,7 @@ public class CursorWrapperMeeting extends CursorWrapper {
     String nameCompany = getString(getColumnIndex(DbSchema.TableMeeting.Cols.NAME_COMPANY));
     String placeMeeting = getString(getColumnIndex(DbSchema.TableMeeting.Cols.PLACE_MEETING));
     long date = getLong(getColumnIndex(DbSchema.TableMeeting.Cols.DATE));
+    String importance = getString(getColumnIndex(DbSchema.TableMeeting.Cols.IMPORTANCE));
 
 
 
@@ -28,6 +29,7 @@ public class CursorWrapperMeeting extends CursorWrapper {
     meeting.setNameCompanyMeeting(nameCompany);
     meeting.setPlaceMeeting(placeMeeting);
     meeting.setmDate(new Date(date));
+    meeting.setImportance(importance);
 
     return meeting;
 
