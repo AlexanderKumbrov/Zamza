@@ -88,7 +88,6 @@ public class AddMeetingFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 

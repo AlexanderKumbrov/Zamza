@@ -2,6 +2,7 @@ package com.example.waves.zamza.meeting;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.*;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.waves.zamza.ColdCallingLab;
 import com.example.waves.zamza.MapsActivity;
@@ -63,6 +65,18 @@ public class MeetingsFragment extends Fragment {
             }
         });
 
+        mRecyclerViewMeeting.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+              if (dy > 0){
+                  addNewMeetingFAB.hide();
+              }else{
+                  addNewMeetingFAB.show();
+              }
+              super.onScrolled(recyclerView , dx ,dy);
+            }
+        });
         updateUI();
         return view;
     }
@@ -88,29 +102,20 @@ public class MeetingsFragment extends Fragment {
 private Meeting mMeeting;
 private TextView nameMeeting;
 private TextView placeMeeting;
-private Button showMap;
 private TextView meetingDate;
 private TextView meetingTime;
-private TextView importance;
+private ImageView importanceIndicator;
 
         public MeetingHolder(@NonNull final View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
 
 nameMeeting = (TextView)itemView.findViewById(R.id.name_meeting);
-showMap = (Button)itemView.findViewById(R.id.show_map);
 meetingDate = (TextView)itemView.findViewById(R.id.meeting_date);
 meetingTime = (TextView)itemView.findViewById(R.id.meeting_time);
-importance = (TextView)itemView.findViewById(R.id.importance_show);
+importanceIndicator = (ImageView)itemView.findViewById(R.id.importance_indicator);
 
 
-showMap.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(getActivity() , MapsActivity.class);
-        startActivity(intent);
-    }
-});
 placeMeeting = (TextView)itemView.findViewById(R.id.place_meeting);
             Button deleteButton = (Button) itemView.findViewById(R.id.delete_meeting);
             deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +139,14 @@ updateUI();
             placeMeeting.setText(meeting.getPlaceMeeting());
             meetingDate.setText(DateFormatterKt.formatDateAsString(DATE_FORMAT , mMeeting.getmDate()));
             meetingTime.setText(DateFormatterKt.formatDateAsTimeString(TIME_FORMAT , mMeeting.getmDate()));
-            importance.setText(meeting.getImportance());
+
+            if (mMeeting.getImportance().equals("high is important")){
+                importanceIndicator.setImageResource(R.drawable.red_circle);
+            }else if (mMeeting.getImportance().equals("medium important")){
+                importanceIndicator.setImageResource(R.drawable.yellow_circle);
+            }else {
+                importanceIndicator.setImageResource(R.drawable.green_circle);
+            }
 
         }
     }

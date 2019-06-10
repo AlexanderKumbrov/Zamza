@@ -43,26 +43,17 @@
                     android:id="@+id/delete_meeting"
                     style="?android:attr/buttonBarButtonStyle"
                     android:text="@string/delete"/>
-            <Button
+
+
+            <ImageView
+                    android:id="@+id/importance_indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/show_map"
-                    android:text="@string/show_in_the_map"
-                    android:layout_below="@+id/meeting_date"
-                    android:layout_marginTop="75dp"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="28dp"/>
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/show_map"
-                      android:layout_below="@id/meeting_time"
-                      android:id="@+id/importance_show"
-
-            android:gravity="center"
+            android:src="@drawable/green_circle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
             />
-            
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
